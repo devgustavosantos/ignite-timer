@@ -46,4 +46,11 @@ export const Global = createGlobalStyle`
   a:visited {
     color: inherit;
   }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 `;
