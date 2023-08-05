@@ -1,6 +1,6 @@
 export const BREAKPOINTS = {
-  small: '600px',
-  medium: '768px',
-  large: '992px',
-  extraLarge: '1200px',
+  SMALL: '600px',
+  MEDIUM: '768px',
+  LARGE: '992px',
+  EXTRA_LARGE: '1200px',
 };

@@ -35,7 +35,7 @@ const Label = styled.label`
   justify-content: space-between;
   width: 100%;
 
-  @media only screen and (max-width: ${BREAKPOINTS.medium}) {
+  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -101,6 +101,35 @@ const PlusIcon = styled(Plus)`
   ${iconsStyles}
 `;
 
+const NumbersContainer = styled.div`
+  margin-top: 64rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 16rem;
+  line-height: 200rem;
+  font-family: 'Roboto Mono';
+  font-size: 160rem;
+`;
+
+const Number = styled.span`
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+  font-weight: 700;
+  background-color: ${({ theme }) => theme.BLACK_700};
+  border-radius: 8rem;
+  padding: 0 14rem;
+`;
+
+const NumberSeparator = styled.span`
+  color: ${({ theme }) => theme.GREEN_800};
+  text-align: center;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+`;
+
 export {
   Container,
   Form,
@@ -110,6 +139,9 @@ export {
   MinutesButtons,
   MinutesContainer,
   MinutesInput,
+  Number,
+  NumberSeparator,
+  NumbersContainer,
   PlusIcon,
   TaskInput,
 };

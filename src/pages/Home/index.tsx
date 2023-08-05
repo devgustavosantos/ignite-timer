@@ -32,13 +32,13 @@ export function Home() {
             minutos.
           </S.Label>
 
-          <div>
-            <span>0</span>
-            <span>0</span>
-            <span>:</span>
-            <span>0</span>
-            <span>0</span>
-          </div>
+          <S.NumbersContainer>
+            <S.Number>0</S.Number>
+            <S.Number>0</S.Number>
+            <S.NumberSeparator>:</S.NumberSeparator>
+            <S.Number>0</S.Number>
+            <S.Number>0</S.Number>
+          </S.NumbersContainer>
 
           <button>
             <Play /> Começar
