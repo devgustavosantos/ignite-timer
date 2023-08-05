@@ -1,9 +1,9 @@
-import { Play } from '@phosphor-icons/react';
-
 import { Header } from '../../components/Header';
 import * as S from './styles';
 
 export function Home() {
+  const renderButtonPlay = true;
+
   return (
     <S.Container>
       <S.Main>
@@ -40,9 +40,15 @@ export function Home() {
             <S.Number>0</S.Number>
           </S.NumbersContainer>
 
-          <button>
-            <Play /> Começar
-          </button>
+          {renderButtonPlay ? (
+            <S.ButtonPlay>
+              <S.PlayIcon /> Começar
+            </S.ButtonPlay>
+          ) : (
+            <S.ButtonStop>
+              <S.StopIcon /> Interromper
+            </S.ButtonStop>
+          )}
         </S.Form>
       </S.Main>
     </S.Container>

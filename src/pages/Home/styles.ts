@@ -1,4 +1,4 @@
-import { Minus, Plus } from '@phosphor-icons/react';
+import { HandPalm, Minus, Play, Plus } from '@phosphor-icons/react';
 import { css, styled } from 'styled-components';
 
 import { BREAKPOINTS } from '../../styles/breakpoints';
@@ -130,7 +130,46 @@ const NumberSeparator = styled.span`
   font-weight: 700;
 `;
 
+const ButtonPlayStop = styled.button`
+  display: block;
+  width: 100%;
+  height: 64rem;
+  padding: 16rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+  border-radius: 8rem;
+  margin-top: 56rem;
+  color: ${({ theme }) => theme.WHITE_900};
+  font-size: 16rem;
+  font-weight: 700;
+`;
+
+const ButtonPlay = styled(ButtonPlayStop)`
+  background-color: ${({ theme }) => theme.GREEN_800};
+`;
+
+const ButtonStop = styled(ButtonPlayStop)`
+  background-color: ${({ theme }) => theme.RED_800};
+`;
+
+const playStopStyles = css`
+  color: inherit;
+  font-size: 20rem;
+`;
+
+const PlayIcon = styled(Play)`
+  ${playStopStyles}
+`;
+
+const StopIcon = styled(HandPalm)`
+  ${playStopStyles}
+`;
+
 export {
+  ButtonPlay,
+  ButtonStop,
   Container,
   Form,
   Label,
@@ -142,6 +181,8 @@ export {
   Number,
   NumberSeparator,
   NumbersContainer,
+  PlayIcon,
   PlusIcon,
+  StopIcon,
   TaskInput,
 };
