@@ -1,8 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { BREAKPOINTS } from './breakpoints';
+
 export const Global = createGlobalStyle`
   html {
-    font-size: 6.25%;
+    font-size: 6.25%;//16px
   }
 
   body,
@@ -48,9 +50,20 @@ export const Global = createGlobalStyle`
   }
 
   #root {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+
+  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+    html {
+      font-size: 5.46875%; //14px
+    }
+  }
+
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    html {
+      font-size: 4.6875%; //12px
+    }
   }
 `;
