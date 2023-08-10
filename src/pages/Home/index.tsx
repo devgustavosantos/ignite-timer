@@ -1,3 +1,5 @@
+import { HandPalm, Minus, Play, Plus } from '@phosphor-icons/react';
+
 import { Header } from '../../components/Header';
 import * as S from './styles';
 
@@ -19,14 +21,14 @@ export function Home() {
             durante
             <S.MinutesContainer>
               <S.MinutesButtons type="button">
-                <S.MinusIcon />
+                <Minus />
               </S.MinutesButtons>
               <S.MinutesInput
                 type="number"
                 placeholder="00"
               />
               <S.MinutesButtons type="button">
-                <S.PlusIcon />
+                <Plus />
               </S.MinutesButtons>
             </S.MinutesContainer>
             minutos.
@@ -42,11 +44,13 @@ export function Home() {
 
           {renderButtonPlay ? (
             <S.ButtonPlay>
-              <S.PlayIcon /> Começar
+              <Play />
+              <S.ButtonText>Começar</S.ButtonText>
             </S.ButtonPlay>
           ) : (
             <S.ButtonStop>
-              <S.StopIcon /> Interromper
+              <HandPalm />
+              <S.ButtonText>Interromper</S.ButtonText>
             </S.ButtonStop>
           )}
         </S.Form>

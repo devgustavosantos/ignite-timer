@@ -49,6 +49,12 @@ export const Global = createGlobalStyle`
     color: inherit;
   }
 
+  svg {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+
   #root {
     display: flex;
     flex-direction: column;

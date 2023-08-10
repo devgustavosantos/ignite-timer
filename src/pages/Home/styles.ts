@@ -1,5 +1,4 @@
-import { HandPalm, Minus, Play, Plus } from '@phosphor-icons/react';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 import { BREAKPOINTS } from '../../styles/breakpoints';
 
@@ -110,18 +109,6 @@ const MinutesButtons = styled.button`
   align-items: center;
 `;
 
-const iconsStyles = css`
-  font-size: 16rem;
-`;
-
-const MinusIcon = styled(Minus)`
-  ${iconsStyles}
-`;
-
-const PlusIcon = styled(Plus)`
-  ${iconsStyles}
-`;
-
 const NumbersContainer = styled.div`
   margin-top: 64rem;
   display: flex;
@@ -182,8 +169,7 @@ const ButtonPlayStop = styled.button`
   border-radius: 8rem;
   margin-top: 56rem;
   color: ${({ theme }) => theme.WHITE_900};
-  font-size: 16rem;
-  font-weight: 700;
+  font-size: 20rem;
 `;
 
 const ButtonPlay = styled(ButtonPlayStop)`
@@ -194,35 +180,24 @@ const ButtonStop = styled(ButtonPlayStop)`
   background-color: ${({ theme }) => theme.RED_800};
 `;
 
-const playStopStyles = css`
-  color: inherit;
-  font-size: 20rem;
-`;
-
-const PlayIcon = styled(Play)`
-  ${playStopStyles}
-`;
-
-const StopIcon = styled(HandPalm)`
-  ${playStopStyles}
+const ButtonText = styled.span`
+  font-size: 16rem;
+  font-weight: 700;
 `;
 
 export {
   ButtonPlay,
   ButtonStop,
+  ButtonText,
   Container,
   Form,
   Label,
   Main,
-  MinusIcon,
   MinutesButtons,
   MinutesContainer,
   MinutesInput,
   Number,
   NumberSeparator,
   NumbersContainer,
-  PlayIcon,
-  PlusIcon,
-  StopIcon,
   TaskInput,
 };

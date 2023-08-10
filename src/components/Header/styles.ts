@@ -1,5 +1,4 @@
-import { Clock, Scroll } from '@phosphor-icons/react';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 const Header = styled.header`
   display: flex;
@@ -17,16 +16,8 @@ const UnorderedList = styled.ul`
   gap: 8rem;
 `;
 
-const iconsStyles = css`
+const Link = styled.a`
   font-size: 32rem;
 `;
 
-const ClockIcon = styled(Clock)`
-  ${iconsStyles}
-`;
-
-const ScrollIcon = styled(Scroll)`
-  ${iconsStyles}
-`;
-
-export { ClockIcon, Header, Logo, ScrollIcon, UnorderedList };
+export { Header, Link, Logo, UnorderedList };

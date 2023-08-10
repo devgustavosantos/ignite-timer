@@ -1,3 +1,5 @@
+import { Clock, Scroll } from '@phosphor-icons/react';
+
 import igniteLogo from '../../assets/ignite-logo.svg';
 import * as S from './styles';
 
@@ -12,15 +14,15 @@ export function Header() {
       <nav>
         <S.UnorderedList>
           <li>
-            <a href="#">
-              <S.ClockIcon />
-            </a>
+            <S.Link href="#">
+              <Clock />
+            </S.Link>
           </li>
 
           <li>
-            <a href="#">
-              <S.ScrollIcon />
-            </a>
+            <S.Link href="#">
+              <Scroll />
+            </S.Link>
           </li>
         </S.UnorderedList>
       </nav>
