@@ -1,6 +1,7 @@
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { Home } from './pages/Home';
+import { Router } from './Routes';
 import { COLORS } from './styles/colors';
 import { Styles } from './styles/index';
 
@@ -8,7 +9,10 @@ function App() {
   return (
     <ThemeProvider theme={COLORS}>
       <Styles />
-      <Home />
+
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
