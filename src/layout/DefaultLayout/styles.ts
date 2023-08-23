@@ -14,6 +14,7 @@ const Container = styled.div`
     flex-wrap: wrap;
     padding: 0;
     background-color: ${({ theme }) => theme.BLACK_800};
+    align-items: flex-start;
   }
 `;
 

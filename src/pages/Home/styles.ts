@@ -2,35 +2,12 @@ import { styled } from 'styled-components';
 
 import { BREAKPOINTS } from '../../styles/breakpoints';
 
-const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  padding: 10rem;
+const Container = styled.main`
+  margin: 72rem auto 120rem;
+  max-width: 656rem;
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0;
-    background-color: ${({ theme }) => theme.BLACK_800};
-  }
-`;
-
-const Main = styled.main`
-  background-color: ${({ theme }) => theme.BLACK_800};
-  border-radius: 8rem;
-  max-width: 1120rem;
-  padding: 40rem;
-  width: 100%;
-
-  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
-    padding: 20rem;
-  }
-
-  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-    border-radius: 0;
-    height: 100%;
+    margin: 0 auto;
   }
 `;
 
@@ -39,8 +16,7 @@ const Form = styled.form`
   font-style: normal;
   font-weight: 500;
   line-height: 28.8rem;
-  margin: 72rem auto 120rem;
-  max-width: 656rem;
+  width: 100%;
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
     margin: 40rem 0;
@@ -79,6 +55,11 @@ const MinutesContainer = styled.div`
   display: flex;
   justify-content: space-between;
   min-width: 80px;
+
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    min-width: initial;
+    gap: 10px;
+  }
 `;
 
 const MinutesInput = styled.input`
@@ -192,7 +173,6 @@ export {
   Container,
   Form,
   Label,
-  Main,
   MinutesButtons,
   MinutesContainer,
   MinutesInput,
