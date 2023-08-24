@@ -131,4 +131,19 @@ export const Reset = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+
+  /* ---------------------------My Customizations---------------------------- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  table, thead, tbody, tr {
+    display: block;
+  }
+
+  td, th {
+    display: inline-block;
+  }
 `;

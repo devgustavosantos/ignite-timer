@@ -117,7 +117,7 @@ const Number = styled.span`
   font-size: inherit;
   font-style: normal;
   font-weight: 700;
-  background-color: ${({ theme }) => theme.BLACK_700};
+  background-color: ${({ theme }) => theme.BLACK_600};
   border-radius: 8rem;
   padding: 0 14rem;
 

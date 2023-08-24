@@ -8,7 +8,8 @@ export const COLORS = {
 
   BLACK_900: '#121214',
   BLACK_800: '#202024',
-  BLACK_700: '#323238',
+  BLACK_700: '#29292E',
+  BLACK_600: '#323238',
 
   GRAY_900: '#7C7C8A',
   GRAY_800: '#8D8D99',
