@@ -31,7 +31,9 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
     border-radius: 0;
-    height: 100%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
   }
 `;
 

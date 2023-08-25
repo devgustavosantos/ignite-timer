@@ -1,6 +1,8 @@
 import SimpleBar from 'simplebar-react';
 import styled, { css } from 'styled-components';
 
+import { BREAKPOINTS } from '../../styles/breakpoints';
+
 const Title = styled.h1`
   font-size: 24rem;
   font-style: normal;
@@ -22,6 +24,8 @@ const TRow = styled.tr`
   text-align: left;
   gap: 24rem;
   padding: 16rem 24rem;
+  width: 100%;
+  min-width: fit-content;
 `;
 
 const TRowOfHead = styled(TRow)`
@@ -56,12 +60,41 @@ const TDataOfHead = styled.th`
 const TDataOfBody = styled.td`
   ${TextStyles}
 `;
+
+const SimpleBarContainer = styled.div`
+  flex-grow: 1;
+  position: relative;
+`;
+
 const CustomSimplebar = styled(SimpleBar)`
-  height: 464rem;
+  .simplebar-track {
+    &.simplebar-vertical {
+      height: calc(100% - 60rem);
+      transform: translateY(60rem);
+    }
+
+    .simplebar-scrollbar::before {
+      background-color: ${({ theme }) => theme.GRAY_800};
+
+      .simplebar-vertical {
+        width: 6rem;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export {
   CustomSimplebar,
+  SimpleBarContainer,
   TDataOfBody,
   TDataOfHead,
   THead,
