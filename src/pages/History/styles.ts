@@ -4,6 +4,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
 `;
 
 const Title = styled.h1`
@@ -19,6 +20,7 @@ const THead = styled.thead`
   top: 0;
   left: 0;
   border-bottom: 4rem solid ${({ theme }) => theme.BLACK_800};
+  transform: translateY(-1px);
 `;
 
 const TRow = styled.tr`

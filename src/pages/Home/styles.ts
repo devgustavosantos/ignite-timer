@@ -3,8 +3,12 @@ import { styled } from 'styled-components';
 import { BREAKPOINTS } from '../../styles/breakpoints';
 
 const Container = styled.main`
-  margin: 72rem auto 120rem;
   max-width: 656rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
     margin: 0 auto;

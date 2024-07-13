@@ -6,7 +6,7 @@ import { BREAKPOINTS } from '../../styles/breakpoints';
 const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
   overflow: hidden;
 `;
 
