@@ -1,4 +1,5 @@
 import { Clock, Scroll } from '@phosphor-icons/react';
+import { Tooltip } from 'react-tooltip';
 
 import igniteLogo from '../../assets/ignite-logo.svg';
 import * as S from './styles';
@@ -13,17 +14,29 @@ export function Header() {
 
       <nav>
         <S.UnorderedList>
-          <li>
-            <S.Link href="#">
+          <S.ListItem data-tooltip-id="timer-page">
+            <S.Link to="/">
               <Clock />
             </S.Link>
-          </li>
+          </S.ListItem>
+          <Tooltip
+            id="timer-page"
+            className="custom-tooltip"
+          >
+            Timer
+          </Tooltip>
 
-          <li>
-            <S.Link href="#">
+          <S.ListItem data-tooltip-id="history-page">
+            <S.Link to="/history">
               <Scroll />
             </S.Link>
-          </li>
+          </S.ListItem>
+          <Tooltip
+            id="history-page"
+            className="custom-tooltip"
+          >
+            Histórico
+          </Tooltip>
         </S.UnorderedList>
       </nav>
     </S.Header>
