@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
 const Title = styled.h1`
   font-size: 24rem;
   font-style: normal;
@@ -58,4 +64,13 @@ const TDataOfBody = styled.td`
   ${TextStyles}
 `;
 
-export { TDataOfBody, TDataOfHead, THead, TRow, TRowOfBody, TRowOfHead, Title };
+export {
+  Container,
+  TDataOfBody,
+  TDataOfHead,
+  THead,
+  TRow,
+  TRowOfBody,
+  TRowOfHead,
+  Title,
+};

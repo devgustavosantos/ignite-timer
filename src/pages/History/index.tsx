@@ -10,7 +10,7 @@ export function History() {
   });
 
   return (
-    <>
+    <S.Container>
       <S.Title>Meu histórico</S.Title>
 
       <CustomSimpleBar>
@@ -37,6 +37,6 @@ export function History() {
           </tbody>
         </table>
       </CustomSimpleBar>
-    </>
+    </S.Container>
   );
 }
