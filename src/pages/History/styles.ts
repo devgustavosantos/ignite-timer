@@ -5,6 +5,7 @@ const Container = styled.div`
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
+  max-width: 932rem;
 `;
 
 const Title = styled.h1`
