@@ -1,15 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
-
-import { Router } from './Routes';
+import { Router } from './Router';
 import { Styles } from './styles/index';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Styles>
-        <Router />
-      </Styles>
-    </BrowserRouter>
+    <Styles>
+      <Router />
+    </Styles>
   );
 }
 
