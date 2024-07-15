@@ -45,11 +45,15 @@ const TaskInput = styled.input`
   background-color: transparent;
   border: 0;
   border-bottom: 2px solid ${({ theme }) => theme.GRAY_900};
-  color: ${({ theme }) => theme.GRAY_900};
+  color: inherit;
   font-size: inherit;
   font-weight: inherit;
   min-width: 250rem;
   text-align: center;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.GRAY_900};
+  }
 `;
 
 const MinutesContainer = styled.div`
