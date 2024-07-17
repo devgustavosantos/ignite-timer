@@ -20,7 +20,7 @@ const UnorderedList = styled.ul`
 
   .custom-tooltip {
     background-color: ${({ theme }) => theme.BLACK_900};
-    box-shadow: 0 0 15px -10px ${({ theme }) => theme.GRAY_700};
+    transform: translateY(8px);
   }
 `;
 
