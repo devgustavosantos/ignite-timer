@@ -1,9 +1,11 @@
 import { HandPalm, Minus, Play, Plus } from '@phosphor-icons/react';
+import { Tooltip } from 'react-tooltip';
 
 import * as S from './styles';
 
 export function Home() {
   const renderButtonPlay = true;
+  const isButtonPlayDisable = true;
 
   return (
     <S.Container>
@@ -39,10 +41,24 @@ export function Home() {
         </S.NumbersContainer>
 
         {renderButtonPlay ? (
-          <S.ButtonPlay>
-            <Play />
-            <S.ButtonText>Começar</S.ButtonText>
-          </S.ButtonPlay>
+          <>
+            <S.ButtonPlay
+              disabled={isButtonPlayDisable}
+              data-tooltip-id="button-play"
+            >
+              <Play />
+              <S.ButtonText>Começar</S.ButtonText>
+            </S.ButtonPlay>
+
+            {isButtonPlayDisable && (
+              <Tooltip
+                id="button-play"
+                className="tooltip custom-tooltip"
+              >
+                Preencha o nome e a duração antes de começar.
+              </Tooltip>
+            )}
+          </>
         ) : (
           <S.ButtonStop>
             <HandPalm />
