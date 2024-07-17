@@ -40,9 +40,12 @@ export const Global = createGlobalStyle`
     transition: filter 0.2s;
   }
 
-  button:hover,
-  a:hover {
-    filter: brightness(0.9);
+  button,
+  a {
+    &:disabled,
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 
   a:visited {
