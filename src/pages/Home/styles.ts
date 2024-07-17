@@ -2,6 +2,7 @@ import { HandPalm, Play } from '@phosphor-icons/react';
 import { styled, css } from 'styled-components';
 
 import { BREAKPOINTS } from '../../styles/breakpoints';
+import { ButtonPlayStopProps } from './types';
 
 const Container = styled.main`
   max-width: 656rem;
@@ -148,7 +149,7 @@ const NumberSeparator = styled.span`
   }
 `;
 
-const ButtonPlayStop = styled.button`
+const ButtonPlayStop = styled.button<ButtonPlayStopProps>`
   width: 100%;
   height: 64rem;
   padding: 16rem 0;
@@ -160,14 +161,9 @@ const ButtonPlayStop = styled.button`
   margin-top: 56rem;
   color: ${({ theme }) => theme.WHITE_900};
   font-size: 20rem;
-`;
 
-const ButtonPlay = styled(ButtonPlayStop)`
-  background-color: ${({ theme }) => theme.GREEN_800};
-`;
-
-const ButtonStop = styled(ButtonPlayStop)`
-  background-color: ${({ theme }) => theme.RED_800};
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.GREEN_800 : theme.RED_800};
 `;
 
 const iconStyles = css`
@@ -188,8 +184,7 @@ const ButtonText = styled.span`
 `;
 
 export {
-  ButtonPlay,
-  ButtonStop,
+  ButtonPlayStop,
   ButtonText,
   Container,
   Form,

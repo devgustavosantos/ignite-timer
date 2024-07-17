@@ -4,8 +4,11 @@ import { Tooltip } from 'react-tooltip';
 import * as S from './styles';
 
 export function Home() {
-  const renderButtonPlay = true;
-  const isButtonPlayDisable = true;
+  const isCountdownStopped = true;
+  // const isCountdownStopped = false;
+
+  const isButtonPlayStopDisable = true;
+  // const isButtonPlayStopDisable = false;
 
   return (
     <S.Container>
@@ -40,31 +43,26 @@ export function Home() {
           <S.Number>0</S.Number>
         </S.NumbersContainer>
 
-        {renderButtonPlay ? (
-          <>
-            <S.ButtonPlay
-              disabled={isButtonPlayDisable}
-              data-tooltip-id="button-play"
-            >
-              <S.PlayIcon />
-              <S.ButtonText>Começar</S.ButtonText>
-            </S.ButtonPlay>
+        <S.ButtonPlayStop
+          isActive={isCountdownStopped}
+          disabled={isButtonPlayStopDisable}
+          data-tooltip-id="button-play"
+        >
+          {isCountdownStopped ? <S.PlayIcon /> : <S.StopIcon />}
 
-            {isButtonPlayDisable && (
-              <Tooltip
-                id="button-play"
-                className="tooltip custom-tooltip"
-              >
-                Preencha o nome e a duração antes de começar.
-              </Tooltip>
-            )}
-          </>
-        ) : (
-          <S.ButtonStop>
-            <S.StopIcon />
-            <S.ButtonText>Interromper</S.ButtonText>
-          </S.ButtonStop>
-        )}
+          <S.ButtonText>
+            {isCountdownStopped ? 'Começar' : 'Interromper'}
+          </S.ButtonText>
+
+          {isCountdownStopped && isButtonPlayStopDisable && (
+            <Tooltip
+              id="button-play"
+              className="tooltip custom-tooltip"
+            >
+              Preencha o nome e a duração antes de começar.
+            </Tooltip>
+          )}
+        </S.ButtonPlayStop>
       </S.Form>
     </S.Container>
   );
