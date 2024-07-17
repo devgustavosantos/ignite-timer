@@ -1,4 +1,5 @@
-import { styled } from 'styled-components';
+import { HandPalm, Play } from '@phosphor-icons/react';
+import { styled, css } from 'styled-components';
 
 import { BREAKPOINTS } from '../../styles/breakpoints';
 
@@ -169,6 +170,18 @@ const ButtonStop = styled(ButtonPlayStop)`
   background-color: ${({ theme }) => theme.RED_800};
 `;
 
+const iconStyles = css`
+  font-size: 1.4em;
+`;
+
+const PlayIcon = styled(Play)`
+  ${iconStyles}
+`;
+
+const StopIcon = styled(HandPalm)`
+  ${iconStyles}
+`;
+
 const ButtonText = styled.span`
   font-size: 16rem;
   font-weight: 700;
@@ -188,4 +201,6 @@ export {
   NumberSeparator,
   NumbersContainer,
   TaskInput,
+  PlayIcon,
+  StopIcon,
 };

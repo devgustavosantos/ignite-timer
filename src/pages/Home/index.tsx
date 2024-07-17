@@ -1,4 +1,4 @@
-import { HandPalm, Minus, Play, Plus } from '@phosphor-icons/react';
+import { Minus, Plus } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 
 import * as S from './styles';
@@ -46,7 +46,7 @@ export function Home() {
               disabled={isButtonPlayDisable}
               data-tooltip-id="button-play"
             >
-              <Play />
+              <S.PlayIcon />
               <S.ButtonText>Começar</S.ButtonText>
             </S.ButtonPlay>
 
@@ -61,7 +61,7 @@ export function Home() {
           </>
         ) : (
           <S.ButtonStop>
-            <HandPalm />
+            <S.StopIcon />
             <S.ButtonText>Interromper</S.ButtonText>
           </S.ButtonStop>
         )}
