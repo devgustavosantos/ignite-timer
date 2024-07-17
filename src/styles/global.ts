@@ -46,6 +46,10 @@ export const Global = createGlobalStyle`
     &:hover {
       filter: brightness(0.8);
     }
+
+    &:disabled:hover {
+      cursor: not-allowed;
+    }
   }
 
   a:visited {
