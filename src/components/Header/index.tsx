@@ -21,7 +21,7 @@ export function Header() {
           </S.ListItem>
           <Tooltip
             id="timer-page"
-            className="custom-tooltip"
+            className="tooltip custom-tooltip"
           >
             Timer
           </Tooltip>
@@ -33,7 +33,7 @@ export function Header() {
           </S.ListItem>
           <Tooltip
             id="history-page"
-            className="custom-tooltip"
+            className="tooltip custom-tooltip"
           >
             Histórico
           </Tooltip>

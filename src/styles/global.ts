@@ -61,6 +61,10 @@ export const Global = createGlobalStyle`
     min-height: 100vh;
   }
 
+  .tooltip.custom-tooltip {
+    background-color: ${({ theme }) => theme.BLACK_900};
+  }
+
   @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
     html {
       font-size: 5.46875%; //14px

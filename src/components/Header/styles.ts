@@ -18,8 +18,7 @@ const UnorderedList = styled.ul`
   justify-content: space-between;
   gap: 8rem;
 
-  .custom-tooltip {
-    background-color: ${({ theme }) => theme.BLACK_900};
+  .tooltip.custom-tooltip {
     transform: translateY(8px);
   }
 `;
