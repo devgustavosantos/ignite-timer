@@ -12,6 +12,7 @@ export function Home() {
           <S.TaskInput
             type="text"
             placeholder="Dê um nome para o seu projeto"
+            list="suggestions"
           />
           durante
           <S.MinutesContainer>
@@ -28,6 +29,12 @@ export function Home() {
           </S.MinutesContainer>
           minutos.
         </S.Label>
+
+        <datalist id="suggestions">
+          <option value="tarefa 1" />
+          <option value="tarefa 2" />
+          <option value="tarefa 3" />
+        </datalist>
 
         <S.NumbersContainer>
           <S.Number>0</S.Number>

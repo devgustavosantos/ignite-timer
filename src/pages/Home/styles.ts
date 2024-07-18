@@ -54,6 +54,10 @@ const TaskInput = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.GRAY_900};
   }
+
+  &::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
 `;
 
 const MinutesContainer = styled.div`
