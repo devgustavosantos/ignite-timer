@@ -3,12 +3,50 @@ import styled, { css } from 'styled-components';
 import { TaskStatusProps } from './types';
 import { statusColors } from './utils';
 
+const Table = styled.table``;
+
+const THead = styled.thead`
+  position: sticky;
+  top: 0;
+  left: 0;
+  border-bottom: 4rem solid ${({ theme }) => theme.BLACK_800};
+  transform: translateY(-1px);
+`;
+
+const TBody = styled.tbody``;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
   max-width: 932rem;
+
+  &:has(${TBody}:empty) {
+    .simplebar-content-wrapper {
+      overflow: hidden;
+      background-color: ${({ theme }) => theme.BLACK_700};
+      border-radius: 8rem;
+    }
+
+    .simplebar-track.simplebar-vertical {
+      display: none;
+    }
+
+    ${Table},
+    .simplebar-content {
+      height: 100%;
+    }
+
+    ${THead} {
+      border: none;
+      transform: none;
+    }
+
+    ${TBody} {
+      height: 100%;
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -17,14 +55,6 @@ const Title = styled.h1`
   font-weight: 700;
   line-height: 38.4rem;
   margin: 50rem 0 32rem;
-`;
-
-const THead = styled.thead`
-  position: sticky;
-  top: 0;
-  left: 0;
-  border-bottom: 4rem solid ${({ theme }) => theme.BLACK_800};
-  transform: translateY(-1px);
 `;
 
 const TRow = styled.tr`
@@ -86,7 +116,7 @@ const TaskStatus = styled.td<TaskStatusProps>`
     display: block;
     border-radius: 50%;
     background-color: ${({ theme, situation }) =>
-    theme[statusColors[situation]]};
+      theme[statusColors[situation]]};
   }
 `;
 
@@ -100,4 +130,6 @@ export {
   TRowOfHead,
   Title,
   TaskStatus,
+  TBody,
+  Table,
 };
