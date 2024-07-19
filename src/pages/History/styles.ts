@@ -58,12 +58,15 @@ const TRowOfBody = styled(TRow)`
 const TextStyles = css`
   font-size: 14rem;
   font-style: normal;
-  font-weight: 700;
   line-height: 160%;
+  font-weight: 400;
+  color: ${({ theme }) => theme.GRAY_700};
 `;
 
 const TDataOfHead = styled.th`
   ${TextStyles}
+  font-weight: 700;
+  color: ${({ theme }) => theme.WHITE_900};
 `;
 
 const TDataOfBody = styled.td`
