@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
 
+import { TaskStatusProps } from './types';
+import { statusColors } from './utils';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,6 +70,23 @@ const TDataOfBody = styled.td`
   ${TextStyles}
 `;
 
+const TaskStatus = styled.td<TaskStatusProps>`
+  ${TextStyles}
+  display: inline-flex;
+  align-items: center;
+  gap: 8rem;
+
+  &::before {
+    content: '';
+    width: 8rem;
+    height: 8rem;
+    display: block;
+    border-radius: 50%;
+    background-color: ${({ theme, situation }) =>
+    theme[statusColors[situation]]};
+  }
+`;
+
 export {
   Container,
   TDataOfBody,
@@ -76,4 +96,5 @@ export {
   TRowOfBody,
   TRowOfHead,
   Title,
+  TaskStatus,
 };

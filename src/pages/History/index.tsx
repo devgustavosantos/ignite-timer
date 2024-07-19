@@ -1,13 +1,17 @@
 import { CustomSimpleBar } from '../../components/CustomSimpleBar';
 import * as S from './styles';
+import { StatusVariations } from './types';
+import { statusTranslation } from './utils';
 
 export function History() {
-  const tasks = new Array(50).fill({
+  const status: StatusVariations = 'ongoing';
+
+  const task = {
     name: 'Teste',
     duration: '10 minutos',
     startedAt: String('inciado no dia ' + new Date().getDate()),
-    status: 'Em andamento',
-  });
+    status,
+  } as const;
 
   return (
     <S.Container>
@@ -24,16 +28,32 @@ export function History() {
             </S.TRowOfHead>
           </S.THead>
           <tbody>
-            {tasks.map((task) => {
-              return (
-                <S.TRowOfBody key={String(Math.random())}>
-                  <S.TDataOfBody>{task.name}</S.TDataOfBody>
-                  <S.TDataOfBody>{task.duration}</S.TDataOfBody>
-                  <S.TDataOfBody>{task.startedAt}</S.TDataOfBody>
-                  <S.TDataOfBody>{task.status}</S.TDataOfBody>
-                </S.TRowOfBody>
-              );
-            })}
+            <S.TRowOfBody key={String(Math.random())}>
+              <S.TDataOfBody>{task.name}</S.TDataOfBody>
+              <S.TDataOfBody>{task.duration}</S.TDataOfBody>
+              <S.TDataOfBody>{task.startedAt}</S.TDataOfBody>
+              <S.TaskStatus situation={task.status}>
+                {statusTranslation[task.status]}
+              </S.TaskStatus>
+            </S.TRowOfBody>
+
+            <S.TRowOfBody key={String(Math.random())}>
+              <S.TDataOfBody>{task.name}</S.TDataOfBody>
+              <S.TDataOfBody>{task.duration}</S.TDataOfBody>
+              <S.TDataOfBody>{task.startedAt}</S.TDataOfBody>
+              <S.TaskStatus situation={task.status}>
+                {statusTranslation[task.status]}
+              </S.TaskStatus>
+            </S.TRowOfBody>
+
+            <S.TRowOfBody key={String(Math.random())}>
+              <S.TDataOfBody>{task.name}</S.TDataOfBody>
+              <S.TDataOfBody>{task.duration}</S.TDataOfBody>
+              <S.TDataOfBody>{task.startedAt}</S.TDataOfBody>
+              <S.TaskStatus situation={task.status}>
+                {statusTranslation[task.status]}
+              </S.TaskStatus>
+            </S.TRowOfBody>
           </tbody>
         </table>
       </CustomSimpleBar>

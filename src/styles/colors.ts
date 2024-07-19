@@ -6,6 +6,8 @@ export const COLORS = {
   RED_900: '#7A1921',
   RED_800: '#F03847',
 
+  YELLOW_900: '#FBA94C',
+
   BLACK_900: '#121214',
   BLACK_800: '#202024',
   BLACK_700: '#29292E',
