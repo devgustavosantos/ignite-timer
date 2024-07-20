@@ -1,9 +1,19 @@
 import { Minus, Plus } from '@phosphor-icons/react';
 
 import { StartStopButton } from './components/StartStopButton';
+import { useHome } from './hook';
 import * as S from './styles';
+import { DESIRED_TIME } from './utils';
 
 export function Home() {
+  const {
+    taskName,
+    setTaskName,
+    desiredTime,
+    setDesiredTime,
+    handleDesiredTime,
+  } = useHome();
+
   return (
     <S.Container>
       <S.Form>
@@ -13,17 +23,29 @@ export function Home() {
             type="text"
             placeholder="Dê um nome para o seu projeto"
             list="suggestions"
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
           />
           durante
           <S.MinutesContainer>
-            <S.MinutesButtons type="button">
+            <S.MinutesButtons
+              type="button"
+              onClick={() => handleDesiredTime(false)}
+            >
               <Minus />
             </S.MinutesButtons>
             <S.MinutesInput
               type="number"
               placeholder="00"
+              value={desiredTime}
+              max={DESIRED_TIME.max}
+              min={DESIRED_TIME.min}
+              onChange={(e) => setDesiredTime(Number(e.target.value))}
             />
-            <S.MinutesButtons type="button">
+            <S.MinutesButtons
+              type="button"
+              onClick={() => handleDesiredTime(true)}
+            >
               <Plus />
             </S.MinutesButtons>
           </S.MinutesContainer>
