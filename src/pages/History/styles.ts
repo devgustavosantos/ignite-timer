@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { Wrapper as SimpleBar } from '../../components/CustomSimpleBar/styles';
 import { TaskStatusProps } from './types';
 import { statusColors } from './utils';
 
@@ -23,6 +24,10 @@ const Container = styled.div`
   max-width: 932rem;
 
   &:has(${TBody}:empty) {
+    ${SimpleBar} {
+      height: 100%;
+    }
+
     .simplebar-content-wrapper {
       overflow: hidden;
       background-color: ${({ theme }) => theme.BLACK_700};
@@ -116,7 +121,7 @@ const TaskStatus = styled.td<TaskStatusProps>`
     display: block;
     border-radius: 50%;
     background-color: ${({ theme, situation }) =>
-      theme[statusColors[situation]]};
+    theme[statusColors[situation]]};
   }
 `;
 
