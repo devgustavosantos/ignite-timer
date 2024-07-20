@@ -70,6 +70,12 @@ const TRow = styled.tr`
   padding: 16rem 24rem;
   width: 100%;
   min-width: fit-content;
+  border: 2px solid transparent;
+  transition: all 0.4s;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.BLACK_600};
+  }
 `;
 
 const TRowOfHead = styled(TRow)`
