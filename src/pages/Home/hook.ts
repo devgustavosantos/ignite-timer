@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import { DESIRED_TIME } from './utils';
 
@@ -26,11 +26,25 @@ export function useHome() {
     setDesiredTime(chosenTime);
   }
 
+  function modifiesDesiredTime(e: ChangeEvent<HTMLInputElement>) {
+    const currentValue = Number(e.target.value);
+
+    if (isNaN(currentValue)) return;
+
+    if (currentValue >= DESIRED_TIME.max) {
+      setDesiredTime(DESIRED_TIME.max);
+
+      return;
+    }
+
+    setDesiredTime(currentValue);
+  }
+
   return {
     taskName,
     setTaskName,
     desiredTime,
-    setDesiredTime,
     handleDesiredTime,
+    modifiesDesiredTime,
   };
 }

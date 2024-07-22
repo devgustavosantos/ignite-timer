@@ -10,8 +10,8 @@ export function Home() {
     taskName,
     setTaskName,
     desiredTime,
-    setDesiredTime,
     handleDesiredTime,
+    modifiesDesiredTime,
   } = useHome();
 
   return (
@@ -35,12 +35,12 @@ export function Home() {
               <Minus />
             </S.MinutesButtons>
             <S.MinutesInput
-              type="number"
+              type="text"
               placeholder="00"
               value={desiredTime}
               max={DESIRED_TIME.max}
               min={DESIRED_TIME.min}
-              onChange={(e) => setDesiredTime(Number(e.target.value))}
+              onChange={modifiesDesiredTime}
             />
             <S.MinutesButtons
               type="button"
