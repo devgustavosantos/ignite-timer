@@ -4,10 +4,10 @@ import { DESIRED_TIME } from './utils';
 
 export function useHome() {
   const [taskName, setTaskName] = useState('');
-  const [desiredTime, setDesiredTime] = useState<number | undefined>(undefined);
+  const [desiredTime, setDesiredTime] = useState<number | ''>('');
 
   function handleDesiredTime(add: boolean) {
-    const currentValue = desiredTime ?? 0;
+    const currentValue = desiredTime || 0;
 
     const chosenTime = add
       ? currentValue + DESIRED_TIME.step
@@ -35,6 +35,12 @@ export function useHome() {
 
     if (currentValue >= DESIRED_TIME.max) {
       setDesiredTime(DESIRED_TIME.max);
+
+      return;
+    }
+
+    if (currentValue <= 0) {
+      setDesiredTime('');
 
       return;
     }
