@@ -12,6 +12,7 @@ export function Home() {
     desiredTime,
     handleDesiredTime,
     modifiesDesiredTime,
+    handleDesiredTimeOnBlur,
   } = useHome();
 
   return (
@@ -41,6 +42,7 @@ export function Home() {
               max={DESIRED_TIME.max}
               min={DESIRED_TIME.min}
               onChange={modifiesDesiredTime}
+              onBlur={handleDesiredTimeOnBlur}
             />
             <S.MinutesButtons
               type="button"

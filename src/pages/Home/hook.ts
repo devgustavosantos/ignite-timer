@@ -48,11 +48,20 @@ export function useHome() {
     setDesiredTime(currentValue);
   }
 
+  function handleDesiredTimeOnBlur() {
+    if (desiredTime === '') return;
+
+    if (desiredTime >= DESIRED_TIME.min) return;
+
+    setDesiredTime(DESIRED_TIME.min);
+  }
+
   return {
     taskName,
     setTaskName,
     desiredTime,
     handleDesiredTime,
     modifiesDesiredTime,
+    handleDesiredTimeOnBlur,
   };
 }
