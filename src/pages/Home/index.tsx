@@ -10,8 +10,8 @@ export function Home() {
     taskName,
     setTaskName,
     desiredTime,
-    handleDesiredTime,
-    modifiesDesiredTime,
+    handleDesiredTimeOnClick,
+    handleDesiredTimeOnChange,
     handleDesiredTimeOnBlur,
   } = useHome();
 
@@ -31,7 +31,7 @@ export function Home() {
           <S.MinutesContainer>
             <S.MinutesButtons
               type="button"
-              onClick={() => handleDesiredTime(false)}
+              onClick={() => handleDesiredTimeOnClick(false)}
             >
               <Minus />
             </S.MinutesButtons>
@@ -41,12 +41,12 @@ export function Home() {
               value={desiredTime}
               max={DESIRED_TIME.max}
               min={DESIRED_TIME.min}
-              onChange={modifiesDesiredTime}
+              onChange={handleDesiredTimeOnChange}
               onBlur={handleDesiredTimeOnBlur}
             />
             <S.MinutesButtons
               type="button"
-              onClick={() => handleDesiredTime(true)}
+              onClick={() => handleDesiredTimeOnClick(true)}
             >
               <Plus />
             </S.MinutesButtons>

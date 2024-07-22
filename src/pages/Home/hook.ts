@@ -6,7 +6,7 @@ export function useHome() {
   const [taskName, setTaskName] = useState('');
   const [desiredTime, setDesiredTime] = useState<number | ''>('');
 
-  function handleDesiredTime(add: boolean) {
+  function handleDesiredTimeOnClick(add: boolean) {
     const currentValue = desiredTime || 0;
 
     const chosenTime = add
@@ -28,7 +28,7 @@ export function useHome() {
     setDesiredTime(chosenTime);
   }
 
-  function modifiesDesiredTime(e: ChangeEvent<HTMLInputElement>) {
+  function handleDesiredTimeOnChange(e: ChangeEvent<HTMLInputElement>) {
     const currentValue = Number(e.target.value);
 
     if (isNaN(currentValue)) return;
@@ -60,8 +60,8 @@ export function useHome() {
     taskName,
     setTaskName,
     desiredTime,
-    handleDesiredTime,
-    modifiesDesiredTime,
+    handleDesiredTimeOnClick,
+    handleDesiredTimeOnChange,
     handleDesiredTimeOnBlur,
   };
 }
