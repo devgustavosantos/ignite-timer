@@ -1,6 +1,6 @@
 import 'styled-components';
 
-import { COLORS } from '../styles/colors';
+import { COLORS } from '@/styles/colors';
 
 type ThemeType = typeof COLORS;
 

@@ -1,7 +1,9 @@
+// eslint-disable-next-line import-helpers/order-imports
 import { Clock, Scroll } from '@phosphor-icons/react';
 import { Tooltip } from 'react-tooltip';
 
-import igniteLogo from '../../assets/ignite-logo.svg';
+import igniteLogo from '@assets/ignite-logo.svg';
+
 import * as S from './styles';
 
 export function Header() {

@@ -1,4 +1,5 @@
-import { CustomSimpleBar } from '../../components/CustomSimpleBar';
+import { CustomSimpleBar } from '@components/CustomSimpleBar';
+
 import * as S from './styles';
 import { StatusVariations } from './types';
 import { statusTranslation } from './utils';

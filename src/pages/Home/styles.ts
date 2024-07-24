@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import { BREAKPOINTS } from '../../styles/breakpoints';
+import { BREAKPOINTS } from '@/styles/breakpoints';
 
 const Container = styled.main`
   max-width: 656rem;

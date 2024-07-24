@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { Wrapper as SimpleBar } from '../../components/CustomSimpleBar/styles';
+import { Wrapper as SimpleBar } from '@components/CustomSimpleBar/styles';
+
 import { TaskStatusProps } from './types';
 import { statusColors } from './utils';
 
