@@ -1,6 +1,8 @@
+/* eslint-disable import-helpers/order-imports */
 import { Minus, Plus } from '@phosphor-icons/react';
 
-import { StartStopButton } from './components/StartStopButton';
+import { StartStopButton } from '@components/StartStopButton';
+
 import { useHome } from './hook';
 import * as S from './styles';
 import { DESIRED_TIME } from './utils';

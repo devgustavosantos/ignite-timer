@@ -1,5 +1,6 @@
-import { HandPalm, Play } from '@phosphor-icons/react';
 import { styled, css } from 'styled-components';
+
+import { HandPalm, Play } from '@phosphor-icons/react';
 
 import { ButtonPlayStopProps } from './types';
 
