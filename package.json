@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -12,8 +13,7 @@
     "eslint": "eslint src/**/*.tsx --fix",
     "stylelint": "stylelint ./src/**/styles.ts",
     "lint-staged": "lint-staged",
-    "commitizen": "cz",
-    "commit": "husky install && git commit -m ''"
+    "commitizen": "cz"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.10",
