@@ -12,6 +12,7 @@ export function Home() {
     handleDesiredTimeOnClick,
     taskNameRegister,
     desiredTimeRegister,
+    isAvailableStartCountdown,
     onSubmit,
     handleSubmit,
   } = useHome();
@@ -69,7 +70,7 @@ export function Home() {
         </S.NumbersContainer>
 
         <StartStopButton
-          disabled={false}
+          disabled={!isAvailableStartCountdown}
           isStartButton={true}
         />
       </S.Form>

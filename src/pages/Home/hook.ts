@@ -11,7 +11,7 @@ export function useHome() {
     handleSubmit,
     formState: { errors },
     setValue,
-    getValues,
+    watch,
   } = useForm<Task>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -29,12 +29,18 @@ export function useHome() {
     onBlur: handleDesiredTimeOnBlur,
   });
 
-  function handleDesiredTimeOnClick(add: boolean) {
-    const valueDesiredTime = getValues('desiredTime');
+  const taskNameWatch = watch('name');
+  const desiredTimeWatch = watch('desiredTime');
 
+  const isAvailableStartCountdown = schema.safeParse({
+    name: taskNameWatch,
+    desiredTime: desiredTimeWatch,
+  }).success;
+
+  function handleDesiredTimeOnClick(add: boolean) {
     const chosenTime = add
-      ? valueDesiredTime + DESIRED_TIME.step
-      : valueDesiredTime - DESIRED_TIME.step;
+      ? desiredTimeWatch + DESIRED_TIME.step
+      : desiredTimeWatch - DESIRED_TIME.step;
 
     if (chosenTime < DESIRED_TIME.min) {
       setValue('desiredTime', DESIRED_TIME.min);
@@ -52,22 +58,20 @@ export function useHome() {
   }
 
   function handleDesiredTimeOnBlur() {
-    const valueDesiredTime = getValues('desiredTime');
-
-    if (valueDesiredTime < DESIRED_TIME.min) {
+    if (desiredTimeWatch < DESIRED_TIME.min) {
       setValue('desiredTime', DESIRED_TIME.min);
 
       return;
     }
 
-    if (valueDesiredTime > DESIRED_TIME.max) {
+    if (desiredTimeWatch > DESIRED_TIME.max) {
       setValue('desiredTime', DESIRED_TIME.max);
 
       return;
     }
 
-    if (!Number.isInteger(valueDesiredTime)) {
-      setValue('desiredTime', Math.floor(valueDesiredTime));
+    if (!Number.isInteger(desiredTimeWatch)) {
+      setValue('desiredTime', Math.floor(desiredTimeWatch));
     }
   }
 
@@ -78,6 +82,7 @@ export function useHome() {
   return {
     taskNameRegister,
     desiredTimeRegister,
+    isAvailableStartCountdown,
     handleDesiredTimeOnClick,
     onSubmit,
     handleSubmit,

@@ -4,4 +4,9 @@ const DESIRED_TIME = {
   max: 60,
 };
 
-export { DESIRED_TIME };
+const TASK_NAME = {
+  min: 1,
+  max: 100,
+};
+
+export { DESIRED_TIME, TASK_NAME };
