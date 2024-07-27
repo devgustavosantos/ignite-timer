@@ -1,67 +1,76 @@
-import { ChangeEvent, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { schema, Task } from './types';
 import { DESIRED_TIME } from './utils';
 
 export function useHome() {
-  const [taskName, setTaskName] = useState('');
-  const [desiredTime, setDesiredTime] = useState<number | ''>('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    getValues,
+  } = useForm<Task>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      desiredTime: 0,
+      name: '',
+    },
+  });
 
   function handleDesiredTimeOnClick(add: boolean) {
-    const currentValue = desiredTime || 0;
+    const valueDesiredTime = getValues('desiredTime');
 
     const chosenTime = add
-      ? currentValue + DESIRED_TIME.step
-      : currentValue - DESIRED_TIME.step;
+      ? valueDesiredTime + DESIRED_TIME.step
+      : valueDesiredTime - DESIRED_TIME.step;
 
-    if (chosenTime <= DESIRED_TIME.min) {
-      setDesiredTime(DESIRED_TIME.min);
-
-      return;
-    }
-
-    if (chosenTime >= DESIRED_TIME.max) {
-      setDesiredTime(DESIRED_TIME.max);
+    if (chosenTime < DESIRED_TIME.min) {
+      setValue('desiredTime', DESIRED_TIME.min);
 
       return;
     }
 
-    setDesiredTime(chosenTime);
-  }
-
-  function handleDesiredTimeOnChange(e: ChangeEvent<HTMLInputElement>) {
-    const currentValue = Number(e.target.value);
-
-    if (isNaN(currentValue)) return;
-
-    if (currentValue >= DESIRED_TIME.max) {
-      setDesiredTime(DESIRED_TIME.max);
+    if (chosenTime > DESIRED_TIME.max) {
+      setValue('desiredTime', DESIRED_TIME.max);
 
       return;
     }
 
-    if (currentValue <= 0) {
-      setDesiredTime('');
-
-      return;
-    }
-
-    setDesiredTime(currentValue);
+    setValue('desiredTime', chosenTime);
   }
 
   function handleDesiredTimeOnBlur() {
-    if (desiredTime === '') return;
+    const valueDesiredTime = getValues('desiredTime');
 
-    if (desiredTime >= DESIRED_TIME.min) return;
+    if (valueDesiredTime < DESIRED_TIME.min) {
+      setValue('desiredTime', DESIRED_TIME.min);
 
-    setDesiredTime(DESIRED_TIME.min);
+      return;
+    }
+
+    if (valueDesiredTime > DESIRED_TIME.max) {
+      setValue('desiredTime', DESIRED_TIME.max);
+
+      return;
+    }
+
+    if (!Number.isInteger(valueDesiredTime)) {
+      setValue('desiredTime', Math.floor(valueDesiredTime));
+    }
+  }
+
+  function onSubmit() {
+    console.log('>>>', { errors });
   }
 
   return {
-    taskName,
-    setTaskName,
-    desiredTime,
     handleDesiredTimeOnClick,
-    handleDesiredTimeOnChange,
     handleDesiredTimeOnBlur,
+    onSubmit,
+    register,
+    handleSubmit,
   };
 }

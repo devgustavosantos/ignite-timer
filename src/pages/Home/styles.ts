@@ -82,6 +82,10 @@ const MinutesInput = styled.input`
   text-align: center;
   width: 21rem;
 
+  &:invalid {
+    color: ${({ theme }) => theme.GRAY_900};
+  }
+
   /* stylelint-disable-next-line */
   -moz-appearance: textfield;
 

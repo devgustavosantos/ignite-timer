@@ -9,25 +9,23 @@ import { DESIRED_TIME } from './utils';
 
 export function Home() {
   const {
-    taskName,
-    setTaskName,
-    desiredTime,
     handleDesiredTimeOnClick,
-    handleDesiredTimeOnChange,
     handleDesiredTimeOnBlur,
+    register,
+    onSubmit,
+    handleSubmit,
   } = useHome();
 
   return (
     <S.Container>
-      <S.Form>
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Label>
           Vou trabalhar em
           <S.TaskInput
             type="text"
             placeholder="Dê um nome para o seu projeto"
             list="suggestions"
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
+            {...register('name')}
           />
           durante
           <S.MinutesContainer>
@@ -38,13 +36,17 @@ export function Home() {
               <Minus />
             </S.MinutesButtons>
             <S.MinutesInput
-              type="text"
-              placeholder="00"
-              value={desiredTime}
+              type="number"
+              required
               max={DESIRED_TIME.max}
               min={DESIRED_TIME.min}
-              onChange={handleDesiredTimeOnChange}
-              onBlur={handleDesiredTimeOnBlur}
+              {...register('desiredTime', {
+                min: DESIRED_TIME.min,
+                max: DESIRED_TIME.max,
+                required: true,
+                valueAsNumber: true,
+                onBlur: handleDesiredTimeOnBlur,
+              })}
             />
             <S.MinutesButtons
               type="button"

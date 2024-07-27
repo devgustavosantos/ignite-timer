@@ -13,7 +13,7 @@ export function StartStopButton() {
     <S.Container
       isActive={isCountdownStopped}
       disabled={isButtonPlayStopDisable}
-      type="button"
+      type={isCountdownStopped ? 'submit' : 'button'}
       data-tooltip-id="button-play"
     >
       {isCountdownStopped ? <S.PlayIcon /> : <S.StopIcon />}
