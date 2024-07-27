@@ -10,8 +10,8 @@ import { DESIRED_TIME } from './utils';
 export function Home() {
   const {
     handleDesiredTimeOnClick,
-    handleDesiredTimeOnBlur,
-    register,
+    taskNameRegister,
+    desiredTimeRegister,
     onSubmit,
     handleSubmit,
   } = useHome();
@@ -25,7 +25,7 @@ export function Home() {
             type="text"
             placeholder="Dê um nome para o seu projeto"
             list="suggestions"
-            {...register('name')}
+            {...taskNameRegister}
           />
           durante
           <S.MinutesContainer>
@@ -40,13 +40,7 @@ export function Home() {
               required
               max={DESIRED_TIME.max}
               min={DESIRED_TIME.min}
-              {...register('desiredTime', {
-                min: DESIRED_TIME.min,
-                max: DESIRED_TIME.max,
-                required: true,
-                valueAsNumber: true,
-                onBlur: handleDesiredTimeOnBlur,
-              })}
+              {...desiredTimeRegister}
             />
             <S.MinutesButtons
               type="button"

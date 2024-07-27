@@ -20,6 +20,15 @@ export function useHome() {
     },
   });
 
+  const taskNameRegister = register('name');
+  const desiredTimeRegister = register('desiredTime', {
+    min: DESIRED_TIME.min,
+    max: DESIRED_TIME.max,
+    required: true,
+    valueAsNumber: true,
+    onBlur: handleDesiredTimeOnBlur,
+  });
+
   function handleDesiredTimeOnClick(add: boolean) {
     const valueDesiredTime = getValues('desiredTime');
 
@@ -67,10 +76,10 @@ export function useHome() {
   }
 
   return {
+    taskNameRegister,
+    desiredTimeRegister,
     handleDesiredTimeOnClick,
-    handleDesiredTimeOnBlur,
     onSubmit,
-    register,
     handleSubmit,
   };
 }
