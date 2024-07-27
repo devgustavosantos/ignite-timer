@@ -18,7 +18,7 @@ export function StartStopButton() {
     >
       {isCountdownStopped ? <S.PlayIcon /> : <S.StopIcon />}
 
-      <S.ButtonText>
+      <S.ButtonText title="Iniciar ou interromper a contagem">
         {isCountdownStopped ? 'Começar' : 'Interromper'}
       </S.ButtonText>
 

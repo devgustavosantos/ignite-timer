@@ -31,6 +31,7 @@ export function Home() {
           <S.MinutesContainer>
             <S.MinutesButtons
               type="button"
+              title="Diminuir o tempo desejado"
               onClick={() => handleDesiredTimeOnClick(false)}
             >
               <Minus />
@@ -44,6 +45,7 @@ export function Home() {
             />
             <S.MinutesButtons
               type="button"
+              title="Aumentar o tempo desejado"
               onClick={() => handleDesiredTimeOnClick(true)}
             >
               <Plus />
