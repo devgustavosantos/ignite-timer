@@ -70,6 +70,12 @@ export function useHome() {
       return;
     }
 
+    if (isNaN(desiredTimeWatch)) {
+      setValue('desiredTime', DESIRED_TIME.min);
+
+      return;
+    }
+
     if (!Number.isInteger(desiredTimeWatch)) {
       setValue('desiredTime', Math.floor(desiredTimeWatch));
     }
