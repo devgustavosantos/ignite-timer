@@ -1,7 +1,13 @@
 import { ButtonHTMLAttributes } from 'react';
 
-interface ButtonPlayStopProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isActive: boolean;
+interface ButtonStartStopProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  disabled: boolean;
+  isStartButton: boolean;
 }
 
-export type { ButtonPlayStopProps };
+type UseStartStopButtonProps = Pick<
+  ButtonStartStopProps,
+  'disabled' | 'isStartButton'
+>;
+
+export type { ButtonStartStopProps, UseStartStopButtonProps };

@@ -2,9 +2,9 @@ import { styled, css } from 'styled-components';
 
 import { HandPalm, Play } from '@phosphor-icons/react';
 
-import { ButtonPlayStopProps } from './types';
+import { ButtonStartStopProps } from './types';
 
-const Container = styled.button<ButtonPlayStopProps>`
+const Container = styled.button<ButtonStartStopProps>`
   width: 100%;
   height: 64rem;
   padding: 16rem 0;
@@ -17,8 +17,8 @@ const Container = styled.button<ButtonPlayStopProps>`
   color: ${({ theme }) => theme.WHITE_900};
   font-size: 20rem;
 
-  background-color: ${({ isActive, theme }) =>
-    isActive ? theme.GREEN_800 : theme.RED_800};
+  background-color: ${({ isStartButton, theme }) =>
+    isStartButton ? theme.GREEN_800 : theme.RED_800};
 `;
 
 const iconStyles = css`

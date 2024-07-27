@@ -68,7 +68,10 @@ export function Home() {
           <S.Number>0</S.Number>
         </S.NumbersContainer>
 
-        <StartStopButton />
+        <StartStopButton
+          disabled={false}
+          isStartButton={true}
+        />
       </S.Form>
     </S.Container>
   );
