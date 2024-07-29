@@ -6,6 +6,7 @@ import { StartStopButton } from '@components/StartStopButton';
 import { useHome } from './hook';
 import * as S from './styles';
 import { DESIRED_TIME } from './utils';
+import { Countdown } from '@/components/Countdown';
 
 export function Home() {
   const {
@@ -61,13 +62,7 @@ export function Home() {
           <option value="tarefa 3" />
         </datalist>
 
-        <S.NumbersContainer>
-          <S.Number>0</S.Number>
-          <S.Number>0</S.Number>
-          <S.NumberSeparator>:</S.NumberSeparator>
-          <S.Number>0</S.Number>
-          <S.Number>0</S.Number>
-        </S.NumbersContainer>
+        <Countdown />
 
         <StartStopButton
           disabled={!isAvailableStartCountdown}
