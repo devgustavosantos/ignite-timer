@@ -2,16 +2,23 @@ import * as z from 'zod';
 
 import { DESIRED_TIME, TASK_NAME } from './utils';
 
-const schema = z
+const FormSchema = z
   .object({
     name: z.string().min(TASK_NAME.min).max(TASK_NAME.max).trim(),
     desiredTime: z.number().int().min(DESIRED_TIME.min).max(DESIRED_TIME.max),
   })
   .required();
 
-type Task = z.infer<typeof schema>;
+const TaskSchema = FormSchema.extend({
+  createdAt: z.date(),
+  interruptedAt: z.date().optional(),
+  finishedAt: z.date().optional(),
+});
 
-type FormRegister = keyof Task;
+type FormType = z.infer<typeof FormSchema>;
+type TaskType = z.infer<typeof TaskSchema>;
 
-export { schema };
-export type { Task, FormRegister };
+type FormRegister = keyof FormType;
+
+export { FormSchema };
+export type { FormType, TaskType, FormRegister };

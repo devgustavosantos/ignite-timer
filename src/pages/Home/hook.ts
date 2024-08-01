@@ -1,19 +1,16 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { schema, Task } from './types';
+import { FormSchema, FormType, TaskType } from './types';
 import { DESIRED_TIME } from './utils';
 
 export function useHome() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useForm<Task>({
-    resolver: zodResolver(schema),
+  const [task, setTask] = useState<TaskType | null>(null);
+
+  const { register, handleSubmit, setValue, watch } = useForm<FormType>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       desiredTime: 0,
       name: '',
@@ -32,10 +29,11 @@ export function useHome() {
   const taskNameWatch = watch('name');
   const desiredTimeWatch = watch('desiredTime');
 
-  const isAvailableStartCountdown = schema.safeParse({
+  const schemaValidation = FormSchema.safeParse({
     name: taskNameWatch,
     desiredTime: desiredTimeWatch,
-  }).success;
+  });
+  const isAvailableStartCountdown = schemaValidation.success;
 
   function handleDesiredTimeOnClick(add: boolean) {
     const chosenTime = add
@@ -81,9 +79,17 @@ export function useHome() {
     }
   }
 
-  function onSubmit() {
-    console.log('>>>', { errors });
+  function onSubmit(data: FormType) {
+    if (schemaValidation.error) return;
+
+    setTask({
+      name: data.name,
+      desiredTime: data.desiredTime,
+      createdAt: new Date(),
+    });
   }
+
+  console.log('>>> task', task);
 
   return {
     taskNameRegister,
