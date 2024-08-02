@@ -6,10 +6,10 @@ import { TasksContext } from './';
 import { TasksProviderProps } from './types';
 
 export function TasksProvider({ children }: TasksProviderProps) {
-  const [task, setTask] = useState<TaskType | null>(null);
+  const [currentTask, setCurrentTask] = useState<TaskType | null>(null);
 
   return (
-    <TasksContext.Provider value={{ task, setTask }}>
+    <TasksContext.Provider value={{ currentTask, setCurrentTask }}>
       {children}
     </TasksContext.Provider>
   );

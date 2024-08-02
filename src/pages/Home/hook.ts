@@ -16,7 +16,7 @@ export function useHome() {
     },
   });
 
-  const { setTask } = useTasksContext();
+  const { setCurrentTask } = useTasksContext();
 
   const taskNameRegister = register('name');
   const desiredTimeRegister = register('desiredTime', {
@@ -83,7 +83,7 @@ export function useHome() {
   function onSubmit(data: FormType) {
     if (schemaValidation.error) return;
 
-    setTask({
+    setCurrentTask({
       name: data.name,
       desiredTime: data.desiredTime,
       createdAt: new Date(),

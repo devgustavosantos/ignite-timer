@@ -7,8 +7,8 @@ interface TasksProviderProps {
 }
 
 interface TasksContextType {
-  task: TaskType | null;
-  setTask: Dispatch<SetStateAction<TaskType | null>>;
+  currentTask: TaskType | null;
+  setCurrentTask: Dispatch<SetStateAction<TaskType | null>>;
 }
 
 export type { TasksProviderProps, TasksContextType };
