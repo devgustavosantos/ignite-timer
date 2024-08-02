@@ -1,3 +1,4 @@
+import { FormProvider } from '@/contexts/Form';
 import { TasksProvider } from '@/contexts/Tasks';
 
 import { Router } from './Router';
@@ -7,7 +8,9 @@ function App() {
   return (
     <Styles>
       <TasksProvider>
-        <Router />
+        <FormProvider>
+          <Router />
+        </FormProvider>
       </TasksProvider>
     </Styles>
   );

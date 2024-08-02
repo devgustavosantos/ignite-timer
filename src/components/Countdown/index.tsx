@@ -1,6 +1,8 @@
+import { memo } from 'react';
+
 import * as S from './styles';
 
-export function Countdown() {
+function CountdownComponent() {
   return (
     <S.Container>
       <S.Number>0</S.Number>
@@ -11,3 +13,5 @@ export function Countdown() {
     </S.Container>
   );
 }
+
+export const Countdown = memo(CountdownComponent);

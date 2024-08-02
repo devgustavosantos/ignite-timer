@@ -1,11 +1,11 @@
-/* eslint-disable-next-line import-helpers/order-imports */
+// eslint-disable-next-line import-helpers/order-imports
 import { Minus, Plus } from '@phosphor-icons/react';
 
+import { useFormContext } from '@/contexts/Form';
 import { TASK } from '@/utils/task';
 import { Countdown } from '@components/Countdown';
 import { StartStopButton } from '@components/StartStopButton';
 
-import { useHome } from './hook';
 import * as S from './styles';
 
 export function Home() {
@@ -16,7 +16,7 @@ export function Home() {
     isAvailableStartCountdown,
     onSubmit,
     handleSubmit,
-  } = useHome();
+  } = useFormContext();
 
   return (
     <S.Container>

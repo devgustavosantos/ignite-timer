@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form';
 import { useTasksContext } from '@/contexts/Tasks';
 import { TASK } from '@/utils/task';
 
-import { FormSchema, FormType } from './types';
+import { FormContext } from './';
+import { FormSchema, FormType, FormProviderProps } from './types';
 
-export function useHome() {
+export function FormProvider({ children }: FormProviderProps) {
   const { register, handleSubmit, setValue, watch } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -90,12 +91,18 @@ export function useHome() {
     });
   }
 
-  return {
-    taskNameRegister,
-    desiredTimeRegister,
-    isAvailableStartCountdown,
-    handleDesiredTimeOnClick,
-    onSubmit,
-    handleSubmit,
-  };
+  return (
+    <FormContext.Provider
+      value={{
+        taskNameRegister,
+        desiredTimeRegister,
+        isAvailableStartCountdown,
+        handleDesiredTimeOnClick,
+        onSubmit,
+        handleSubmit,
+      }}
+    >
+      {children}
+    </FormContext.Provider>
+  );
 }
