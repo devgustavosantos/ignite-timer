@@ -1,10 +1,14 @@
+import { TasksProvider } from '@/contexts/Tasks';
+
 import { Router } from './Router';
-import { Styles } from './styles/index';
+import { Styles } from './styles';
 
 function App() {
   return (
     <Styles>
-      <Router />
+      <TasksProvider>
+        <Router />
+      </TasksProvider>
     </Styles>
   );
 }

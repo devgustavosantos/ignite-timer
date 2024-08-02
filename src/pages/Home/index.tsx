@@ -1,12 +1,12 @@
-/* eslint-disable import-helpers/order-imports */
+/* eslint-disable-next-line import-helpers/order-imports */
 import { Minus, Plus } from '@phosphor-icons/react';
 
+import { TASK } from '@/utils/task';
+import { Countdown } from '@components/Countdown';
 import { StartStopButton } from '@components/StartStopButton';
 
 import { useHome } from './hook';
 import * as S from './styles';
-import { DESIRED_TIME } from './utils';
-import { Countdown } from '@/components/Countdown';
 
 export function Home() {
   const {
@@ -41,8 +41,8 @@ export function Home() {
             <S.MinutesInput
               type="number"
               required
-              max={DESIRED_TIME.max}
-              min={DESIRED_TIME.min}
+              max={TASK.desiredTime.max}
+              min={TASK.desiredTime.min}
               {...desiredTimeRegister}
             />
             <S.MinutesButtons

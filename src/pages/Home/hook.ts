@@ -1,14 +1,13 @@
-import { useState } from 'react';
+// eslint-disable-next-line import-helpers/order-imports
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useTasksContext } from '@/contexts/Tasks';
+import { TASK } from '@/utils/task';
 
-import { FormSchema, FormType, TaskType } from './types';
-import { DESIRED_TIME } from './utils';
+import { FormSchema, FormType } from './types';
 
 export function useHome() {
-  const [task, setTask] = useState<TaskType | null>(null);
-
   const { register, handleSubmit, setValue, watch } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -17,10 +16,12 @@ export function useHome() {
     },
   });
 
+  const { setTask } = useTasksContext();
+
   const taskNameRegister = register('name');
   const desiredTimeRegister = register('desiredTime', {
-    min: DESIRED_TIME.min,
-    max: DESIRED_TIME.max,
+    min: TASK.desiredTime.min,
+    max: TASK.desiredTime.max,
     required: true,
     valueAsNumber: true,
     onBlur: handleDesiredTimeOnBlur,
@@ -37,17 +38,17 @@ export function useHome() {
 
   function handleDesiredTimeOnClick(add: boolean) {
     const chosenTime = add
-      ? desiredTimeWatch + DESIRED_TIME.step
-      : desiredTimeWatch - DESIRED_TIME.step;
+      ? desiredTimeWatch + TASK.desiredTime.multiple
+      : desiredTimeWatch - TASK.desiredTime.multiple;
 
-    if (chosenTime < DESIRED_TIME.min) {
-      setValue('desiredTime', DESIRED_TIME.min);
+    if (chosenTime < TASK.desiredTime.min) {
+      setValue('desiredTime', TASK.desiredTime.min);
 
       return;
     }
 
-    if (chosenTime > DESIRED_TIME.max) {
-      setValue('desiredTime', DESIRED_TIME.max);
+    if (chosenTime > TASK.desiredTime.max) {
+      setValue('desiredTime', TASK.desiredTime.max);
 
       return;
     }
@@ -56,20 +57,20 @@ export function useHome() {
   }
 
   function handleDesiredTimeOnBlur() {
-    if (desiredTimeWatch < DESIRED_TIME.min) {
-      setValue('desiredTime', DESIRED_TIME.min);
+    if (desiredTimeWatch < TASK.desiredTime.min) {
+      setValue('desiredTime', TASK.desiredTime.min);
 
       return;
     }
 
-    if (desiredTimeWatch > DESIRED_TIME.max) {
-      setValue('desiredTime', DESIRED_TIME.max);
+    if (desiredTimeWatch > TASK.desiredTime.max) {
+      setValue('desiredTime', TASK.desiredTime.max);
 
       return;
     }
 
     if (isNaN(desiredTimeWatch)) {
-      setValue('desiredTime', DESIRED_TIME.min);
+      setValue('desiredTime', TASK.desiredTime.min);
 
       return;
     }
@@ -88,8 +89,6 @@ export function useHome() {
       createdAt: new Date(),
     });
   }
-
-  console.log('>>> task', task);
 
   return {
     taskNameRegister,
