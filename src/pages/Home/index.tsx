@@ -1,10 +1,10 @@
 // eslint-disable-next-line import-helpers/order-imports
 import { Minus, Plus } from '@phosphor-icons/react';
 
+import { Countdown } from '@/components/Countdown';
+import { StartStopButton } from '@/components/StartStopButton';
 import { useFormContext } from '@/contexts/Form';
 import { TASK } from '@/utils/task';
-import { Countdown } from '@components/Countdown';
-import { StartStopButton } from '@components/StartStopButton';
 
 import * as S from './styles';
 

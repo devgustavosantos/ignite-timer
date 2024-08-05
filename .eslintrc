@@ -45,8 +45,6 @@
         "groups": [
           "module",
           "/^@/",
-          "/^@assets/",
-          "/^@components/",
           [
             "parent",
             "sibling",
