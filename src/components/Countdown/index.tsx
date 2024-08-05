@@ -18,7 +18,7 @@ function CountdownComponent() {
   const secondesToDisplayed = String(secondsRemaining).padStart(2, '0');
 
   useEffect(() => {
-    setTimeout(() => {
+    function changeTime() {
       if (!currentTask) return;
 
       const currentDate = new Date();
@@ -34,9 +34,23 @@ function CountdownComponent() {
       const secondsRemaining =
         desiredTimeConvertedToSeconds - distanceConvertedToSeconds;
 
-      setRemainingTime(secondsRemaining <= 0 ? 0 : secondsRemaining);
-    }, 1000);
-  }, [currentTask, remainingTime]);
+      if (secondsRemaining <= 0) {
+        setRemainingTime(0);
+
+        return;
+      }
+
+      setRemainingTime(secondsRemaining);
+
+      return setTimeout(changeTime, 1000);
+    }
+
+    const timeout = changeTime();
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [currentTask]);
 
   return (
     <S.Container>
