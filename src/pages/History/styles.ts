@@ -24,6 +24,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 932rem;
 
+  /* stylelint-disable */
   &:has(${TBody}:empty) {
     ${SimpleBar} {
       height: 100%;
@@ -53,6 +54,7 @@ const Container = styled.div`
       height: 100%;
     }
   }
+  /* stylelint-enable */
 `;
 
 const Title = styled.h1`
@@ -128,7 +130,8 @@ const TaskStatus = styled.td<TaskStatusProps>`
     display: block;
     border-radius: 50%;
     background-color: ${({ theme, situation }) =>
-    theme[statusColors[situation]]};
+  // eslint-disable-next-line indent
+      theme[statusColors[situation]]};
   }
 `;
 
