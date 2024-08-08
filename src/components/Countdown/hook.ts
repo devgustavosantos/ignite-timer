@@ -5,7 +5,7 @@ import { useTasksContext } from '@/contexts/Tasks';
 export function useCountdown() {
   const [remainingTime, setRemainingTime] = useState(0);
 
-  const { currentTask } = useTasksContext();
+  const { currentTask, finishTask } = useTasksContext();
 
   const desiredTimeConvertedToSeconds = currentTask
     ? currentTask.desiredTime * 60
@@ -42,15 +42,17 @@ export function useCountdown() {
       const secondsRemaining =
         desiredTimeConvertedToSeconds - distanceConvertedToSeconds;
 
-      if (secondsRemaining <= 0) return;
-
       setRemainingTime(secondsRemaining);
+
+      if (secondsRemaining > 0) return;
+
+      finishTask();
     }, 1000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [remainingTime, currentTask, desiredTimeConvertedToSeconds]);
+  }, [remainingTime, currentTask, desiredTimeConvertedToSeconds, finishTask]);
 
   return { minutesToDisplayed, secondesToDisplayed };
 }

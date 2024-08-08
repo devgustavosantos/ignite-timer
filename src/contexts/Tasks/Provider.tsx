@@ -25,9 +25,25 @@ export function TasksProvider({ children }: TasksProviderProps) {
     setCurrentTask(null);
   }
 
+  function finishTask() {
+    if (!currentTask) return;
+
+    setTasks((prevState) => {
+      return [
+        ...prevState,
+        {
+          ...currentTask,
+          finishedAt: new Date(),
+        },
+      ];
+    });
+
+    setCurrentTask(null);
+  }
+
   return (
     <TasksContext.Provider
-      value={{ currentTask, setCurrentTask, interruptTask, tasks }}
+      value={{ currentTask, setCurrentTask, interruptTask, tasks, finishTask }}
     >
       {children}
     </TasksContext.Provider>

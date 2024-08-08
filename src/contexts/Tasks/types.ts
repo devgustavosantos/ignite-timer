@@ -10,6 +10,7 @@ interface TasksContextType {
   currentTask: TaskType | null;
   setCurrentTask: Dispatch<SetStateAction<TaskType | null>>;
   interruptTask: () => void;
+  finishTask: () => void;
   tasks: TaskType[];
 }
 
