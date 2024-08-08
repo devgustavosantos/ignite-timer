@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonStartStopProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  disabled: boolean;
-  isStartButton: boolean;
+  disabled?: boolean;
+  isStartButton?: boolean;
 }
 
 type UseStartStopButtonProps = Pick<
