@@ -18,9 +18,16 @@ function CountdownComponent() {
   const secondesToDisplayed = String(secondsRemaining).padStart(2, '0');
 
   useEffect(() => {
-    function changeTime() {
-      if (!currentTask) return;
+    const shouldRemainingTimeBeReset = !currentTask && remainingTime;
+    if (shouldRemainingTimeBeReset) {
+      setRemainingTime(0);
 
+      return;
+    }
+
+    if (!currentTask) return;
+
+    const timeout = setTimeout(() => {
       const currentDate = new Date();
       const distanceBetweenDates =
         currentDate.getTime() - currentTask?.createdAt.getTime();
@@ -34,23 +41,15 @@ function CountdownComponent() {
       const secondsRemaining =
         desiredTimeConvertedToSeconds - distanceConvertedToSeconds;
 
-      if (secondsRemaining <= 0) {
-        setRemainingTime(0);
-
-        return;
-      }
+      if (secondsRemaining <= 0) return;
 
       setRemainingTime(secondsRemaining);
-
-      return setTimeout(changeTime, 1000);
-    }
-
-    const timeout = changeTime();
+    }, 1000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [currentTask]);
+  }, [currentTask, remainingTime, setRemainingTime]);
 
   return (
     <S.Container>

@@ -9,6 +9,8 @@ interface TasksProviderProps {
 interface TasksContextType {
   currentTask: TaskType | null;
   setCurrentTask: Dispatch<SetStateAction<TaskType | null>>;
+  interruptTask: () => void;
+  tasks: TaskType[];
 }
 
 export type { TasksProviderProps, TasksContextType };

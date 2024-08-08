@@ -9,7 +9,7 @@ import { FormContext } from './';
 import { FormSchema, FormType, FormProviderProps } from './types';
 
 export function FormProvider({ children }: FormProviderProps) {
-  const { register, handleSubmit, setValue, watch } = useForm<FormType>({
+  const { register, handleSubmit, setValue, watch, reset } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       desiredTime: 0,
@@ -89,6 +89,8 @@ export function FormProvider({ children }: FormProviderProps) {
       desiredTime: data.desiredTime,
       createdAt: new Date(),
     });
+
+    reset();
   }
 
   return (
