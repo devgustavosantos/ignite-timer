@@ -1,6 +1,6 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ReactNode } from 'react';
 
-import { TaskType } from '@/types/task';
+import { TaskType, CreateTaskType } from '@/types/task';
 
 interface TasksProviderProps {
   children: ReactNode;
@@ -8,10 +8,10 @@ interface TasksProviderProps {
 
 interface TasksContextType {
   currentTask: TaskType | null;
-  setCurrentTask: Dispatch<SetStateAction<TaskType | null>>;
+  tasks: TaskType[];
+  createTask: (data: CreateTaskType) => void;
   interruptTask: () => void;
   finishTask: () => void;
-  tasks: TaskType[];
 }
 
 export type { TasksProviderProps, TasksContextType };

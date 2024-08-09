@@ -2,7 +2,7 @@ import * as z from 'zod';
 
 import { TASK } from '@/utils/task';
 
-export const TaskSchema = z.object({
+const TaskSchema = z.object({
   name: z.string().min(TASK.nameLength.min).max(TASK.nameLength.max).trim(),
   desiredTime: z
     .number()
@@ -13,5 +13,10 @@ export const TaskSchema = z.object({
   interruptedAt: z.date().optional(),
   finishedAt: z.date().optional(),
 });
+type TaskType = z.infer<typeof TaskSchema>;
 
-export type TaskType = z.infer<typeof TaskSchema>;
+const CreateTaskSchema = TaskSchema.pick({ name: true, desiredTime: true });
+type CreateTaskType = z.infer<typeof CreateTaskSchema>;
+
+export { CreateTaskSchema, TaskSchema };
+export type { TaskType, CreateTaskType };

@@ -3,21 +3,23 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { useTasksContext } from '@/contexts/Tasks';
+import { CreateTaskSchema, CreateTaskType } from '@/types/task';
 import { TASK } from '@/utils/task';
 
 import { FormContext } from './';
-import { FormSchema, FormType, FormProviderProps } from './types';
+import { FormProviderProps } from './types';
 
 export function FormProvider({ children }: FormProviderProps) {
-  const { register, handleSubmit, setValue, watch, reset } = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      desiredTime: 0,
-      name: '',
-    },
-  });
+  const { register, handleSubmit, setValue, watch, reset } =
+    useForm<CreateTaskType>({
+      resolver: zodResolver(CreateTaskSchema),
+      defaultValues: {
+        desiredTime: 0,
+        name: '',
+      },
+    });
 
-  const { setCurrentTask } = useTasksContext();
+  const { createTask } = useTasksContext();
 
   const taskNameRegister = register('name');
   const desiredTimeRegister = register('desiredTime', {
@@ -31,7 +33,7 @@ export function FormProvider({ children }: FormProviderProps) {
   const taskNameWatch = watch('name');
   const desiredTimeWatch = watch('desiredTime');
 
-  const schemaValidation = FormSchema.safeParse({
+  const schemaValidation = CreateTaskSchema.safeParse({
     name: taskNameWatch,
     desiredTime: desiredTimeWatch,
   });
@@ -81,14 +83,10 @@ export function FormProvider({ children }: FormProviderProps) {
     }
   }
 
-  function onSubmit(data: FormType) {
+  function onSubmit(data: CreateTaskType) {
     if (schemaValidation.error) return;
 
-    setCurrentTask({
-      name: data.name,
-      desiredTime: data.desiredTime,
-      createdAt: new Date(),
-    });
+    createTask(data);
 
     reset();
   }
