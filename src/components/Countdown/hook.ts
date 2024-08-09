@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useTasksContext } from '@/contexts/Tasks';
 
+import { SegmentsTime } from './types';
+
 export function useCountdown() {
   const [remainingTime, setRemainingTime] = useState(0);
 
@@ -11,11 +13,40 @@ export function useCountdown() {
     ? currentTask.desiredTime * 60
     : 0;
 
-  const minutesRemaining = Math.floor(remainingTime / 60);
-  const secondsRemaining = remainingTime - minutesRemaining * 60;
+  const segmentedTime = (() => {
+    function segmentsTime({
+      timeToBeSegmented,
+      minutesRemaining,
+    }: SegmentsTime) {
+      const minutes = Math.floor(timeToBeSegmented / 60);
+      if (minutes) {
+        const minutesConverted = minutes * 60;
 
-  const minutesToDisplayed = String(minutesRemaining).padStart(2, '0');
-  const secondesToDisplayed = String(secondsRemaining).padStart(2, '0');
+        return segmentsTime({
+          timeToBeSegmented: timeToBeSegmented - minutesConverted,
+          minutesRemaining: minutes,
+        });
+      }
+
+      return {
+        minutesRemaining: minutesRemaining ?? 0,
+        secondsRemaining: timeToBeSegmented,
+      };
+    }
+
+    return segmentsTime({
+      timeToBeSegmented: remainingTime,
+    });
+  })();
+
+  const minutesToDisplayed = String(segmentedTime.minutesRemaining).padStart(
+    2,
+    '0',
+  );
+  const secondesToDisplayed = String(segmentedTime.secondsRemaining).padStart(
+    2,
+    '0',
+  );
 
   useEffect(() => {
     if (!currentTask) {
