@@ -1,20 +1,17 @@
-import { CustomSimpleBar } from '@/components/CustomSimpleBar';
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
+import { CustomSimpleBar } from '@/components/CustomSimpleBar';
+import { useTasksContext } from '@/contexts/Tasks';
+
+import { useHistory } from './hook';
 import * as S from './styles';
-import { StatusVariations } from './types';
 import { statusTranslation } from './utils';
 
 export function History() {
-  const status: StatusVariations = 'ongoing';
+  const { tasks } = useTasksContext();
 
-  const exampleTask = {
-    name: 'Teste',
-    duration: '10 minutos',
-    startedAt: String('inciado no dia ' + new Date().getDate()),
-    status,
-  } as const;
-
-  const tasks: (typeof exampleTask)[] = new Array(0).fill(exampleTask);
+  const { getTaskStatus } = useHistory();
 
   return (
     <S.Container>
@@ -31,18 +28,18 @@ export function History() {
             </S.TRowOfHead>
           </S.THead>
           <S.TBody>
-            {tasks.map((task) => {
-              return (
-                <S.TRowOfBody key={String(Math.random())}>
-                  <S.TDataOfBody>{task.name}</S.TDataOfBody>
-                  <S.TDataOfBody>{task.duration}</S.TDataOfBody>
-                  <S.TDataOfBody>{task.startedAt}</S.TDataOfBody>
-                  <S.TaskStatus situation={task.status}>
-                    {statusTranslation[task.status]}
-                  </S.TaskStatus>
-                </S.TRowOfBody>
-              );
-            })}
+            {tasks.map((task) => (
+              <S.TRowOfBody key={String(task.createdAt)}>
+                <S.TDataOfBody>{task.name}</S.TDataOfBody>
+                <S.TDataOfBody>{task.desiredTime} minutos</S.TDataOfBody>
+                <S.TDataOfBody>
+                  {formatDistanceToNow(task.createdAt, { locale: ptBR })}
+                </S.TDataOfBody>
+                <S.TaskStatus situation={getTaskStatus(task)}>
+                  {statusTranslation[getTaskStatus(task)]}
+                </S.TaskStatus>
+              </S.TRowOfBody>
+            ))}
           </S.TBody>
         </S.Table>
       </CustomSimpleBar>

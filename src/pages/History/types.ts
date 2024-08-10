@@ -1,8 +1,8 @@
-interface StatusGroup {
-  ongoing: string;
-  concluded: string;
-  interrupted: string;
-}
+import z from 'zod';
+
+export const status = z.enum(['ongoing', 'concluded', 'interrupted']);
+
+type StatusGroup = { [K in z.infer<typeof status>]: string };
 
 type StatusVariations = keyof StatusGroup;
 
