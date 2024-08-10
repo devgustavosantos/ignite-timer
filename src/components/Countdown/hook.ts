@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useTasksContext } from '@/contexts/Tasks';
 
@@ -48,42 +48,42 @@ export function useCountdown() {
     '0',
   );
 
-  useEffect(() => {
+  const changeTime = useCallback(() => {
     if (!currentTask) {
       setRemainingTime(0);
 
       return;
     }
 
-    setRemainingTime(desiredTimeConvertedToSeconds);
-  }, [currentTask, desiredTimeConvertedToSeconds]);
+    const currentDate = new Date();
+    const distanceBetweenDates =
+      currentDate.getTime() - currentTask.createdAt.getTime();
+
+    const distanceConvertedToSeconds = Math.floor(distanceBetweenDates / 1000);
+
+    const secondsRemaining =
+      desiredTimeConvertedToSeconds - distanceConvertedToSeconds;
+
+    setRemainingTime(secondsRemaining);
+
+    if (secondsRemaining > 0) return;
+
+    finishTask();
+  }, [currentTask, desiredTimeConvertedToSeconds, finishTask]);
 
   useEffect(() => {
-    if (!currentTask) return;
+    changeTime();
+  }, [currentTask, changeTime]);
 
+  useEffect(() => {
     const timeout = setTimeout(() => {
-      const currentDate = new Date();
-      const distanceBetweenDates =
-        currentDate.getTime() - currentTask.createdAt.getTime();
-
-      const distanceConvertedToSeconds = Math.floor(
-        distanceBetweenDates / 1000,
-      );
-
-      const secondsRemaining =
-        desiredTimeConvertedToSeconds - distanceConvertedToSeconds;
-
-      setRemainingTime(secondsRemaining);
-
-      if (secondsRemaining > 0) return;
-
-      finishTask();
+      changeTime();
     }, 1000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [remainingTime, currentTask, desiredTimeConvertedToSeconds, finishTask]);
+  }, [remainingTime, changeTime]);
 
   return { minutesToDisplayed, secondesToDisplayed };
 }
