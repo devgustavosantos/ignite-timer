@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { useState } from 'react';
 
 import { CreateTaskType, TaskType } from '@/types/task';
@@ -19,42 +20,39 @@ export function TasksProvider({ children }: TasksProviderProps) {
     };
 
     setCurrentTask(taskToBeCreated);
-
     setTasks((prevState) => {
-      return [...prevState, taskToBeCreated];
+      return [taskToBeCreated, ...prevState];
     });
   }
 
   function interruptTask() {
     if (!currentTask) return;
 
-    setCurrentTask(null);
+    const nextTasks = produce(tasks, (draftState) => {
+      const currentTaskIndex = draftState.findIndex(
+        (task) => task.createdAt === currentTask.createdAt,
+      );
 
-    setTasks((prevState) => {
-      return [
-        ...prevState,
-        {
-          ...currentTask,
-          interruptedAt: new Date(),
-        },
-      ];
+      draftState[currentTaskIndex].interruptedAt = new Date();
     });
+
+    setCurrentTask(null);
+    setTasks(nextTasks);
   }
 
   function finishTask() {
     if (!currentTask) return;
 
-    setCurrentTask(null);
+    const nextTasks = produce(tasks, (draftState) => {
+      const currentTaskIndex = draftState.findIndex(
+        (task) => task.createdAt === currentTask.createdAt,
+      );
 
-    setTasks((prevState) => {
-      return [
-        ...prevState,
-        {
-          ...currentTask,
-          finishedAt: new Date(),
-        },
-      ];
+      draftState[currentTaskIndex].finishedAt = new Date();
     });
+
+    setCurrentTask(null);
+    setTasks(nextTasks);
   }
 
   return (
