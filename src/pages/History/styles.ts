@@ -115,6 +115,8 @@ const TDataOfHead = styled.th`
 
 const TDataOfBody = styled.td`
   ${TextStyles}
+  display: flex;
+  align-items: center;
 `;
 
 const TaskStatus = styled.td<TaskStatusProps>`
