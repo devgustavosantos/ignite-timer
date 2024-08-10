@@ -9,13 +9,25 @@ import { TasksProviderProps } from './types';
 import { LOCAL_STORAGE_KEY } from './utils';
 
 export function TasksProvider({ children }: TasksProviderProps) {
-  const [currentTask, setCurrentTask] = useState<TaskType | null>(null);
-  const [tasks, setTasks] = useState<TaskType[]>(() => {
-    const savedTasks = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!savedTasks) return [];
+  const savedTasks = (() => {
+    const tasksInMemory = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-    const savedTasksParsed = superjson.parse<TaskType[]>(savedTasks);
-    return savedTasksParsed;
+    return tasksInMemory ? superjson.parse<TaskType[]>(tasksInMemory) : null;
+  })();
+
+  const [currentTask, setCurrentTask] = useState<TaskType | null>(() => {
+    if (!savedTasks?.length) return null;
+
+    const savedCurrentTask = savedTasks.find(
+      (task) => !task.finishedAt && !task.interruptedAt,
+    );
+
+    return savedCurrentTask ?? null;
+  });
+  const [tasks, setTasks] = useState<TaskType[]>(() => {
+    if (!savedTasks?.length) return [];
+
+    return savedTasks;
   });
 
   function createTask({ name, desiredTime }: CreateTaskType) {
