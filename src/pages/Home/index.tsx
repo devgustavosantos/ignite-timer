@@ -1,13 +1,14 @@
 // eslint-disable-next-line import-helpers/order-imports
-import { Minus, Plus } from '@phosphor-icons/react';
-
 import { Countdown } from '@/components/Countdown';
+import { Datalist } from '@/components/Datalist';
 import { StartStopButton } from '@/components/StartStopButton';
 import { useFormContext } from '@/contexts/Form';
 import { useTasksContext } from '@/contexts/Tasks';
 import { TASK } from '@/utils/task';
+import { Minus, Plus } from '@phosphor-icons/react';
 
 import * as S from './styles';
+
 
 export function Home() {
   const {
@@ -59,11 +60,7 @@ export function Home() {
           minutos.
         </S.Label>
 
-        <datalist id="suggestions">
-          <option value="tarefa 1" />
-          <option value="tarefa 2" />
-          <option value="tarefa 3" />
-        </datalist>
+        <Datalist />
 
         <Countdown />
 
