@@ -2,7 +2,7 @@ import { produce } from 'immer';
 import { useEffect, useState } from 'react';
 import superjson from 'superjson';
 
-import { CreateTaskType, TaskType } from '@/types/task';
+import { CreateTaskType, TaskSchema, TaskType } from '@/types/task';
 
 import { TasksContext } from './';
 import { TasksProviderProps } from './types';
@@ -12,7 +12,28 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const savedTasks = (() => {
     const tasksInMemory = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-    return tasksInMemory ? superjson.parse<TaskType[]>(tasksInMemory) : null;
+    if (!tasksInMemory) return null;
+
+    try {
+      const tasksParsed = superjson.parse<TaskType[]>(tasksInMemory);
+
+      const areTasksValid = tasksParsed.every(
+        ({ name, desiredTime, createdAt, interruptedAt, finishedAt }) =>
+          TaskSchema.safeParse({
+            name: name,
+            desiredTime,
+            createdAt,
+            interruptedAt,
+            finishedAt,
+          }).success,
+      );
+
+      return areTasksValid ? tasksParsed : null;
+    } catch (error) {
+      console.error('>>> Error converting saved tasks!', error);
+
+      return null;
+    }
   })();
 
   const [currentTask, setCurrentTask] = useState<TaskType | null>(() => {
