@@ -9,7 +9,6 @@ import { Minus, Plus } from '@phosphor-icons/react';
 
 import * as S from './styles';
 
-
 export function Home() {
   const {
     handleDesiredTimeOnClick,
@@ -20,7 +19,7 @@ export function Home() {
     handleSubmit,
   } = useFormContext();
 
-  const { currentTask, interruptTask } = useTasksContext();
+  const { tasks, dispatch } = useTasksContext();
 
   return (
     <S.Container>
@@ -66,8 +65,8 @@ export function Home() {
 
         <StartStopButton
           disabled={!isAvailableStartCountdown}
-          isStartButton={!currentTask}
-          onClick={interruptTask}
+          isStartButton={!tasks.current}
+          onClick={() => dispatch({ type: 'interrupt' })}
         />
       </S.Form>
     </S.Container>

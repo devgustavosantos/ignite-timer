@@ -7,10 +7,10 @@ import { SegmentsTime } from './types';
 export function useCountdown() {
   const [remainingTime, setRemainingTime] = useState(0);
 
-  const { currentTask, finishTask } = useTasksContext();
+  const { tasks, dispatch } = useTasksContext();
 
-  const desiredTimeConvertedToSeconds = currentTask
-    ? currentTask.desiredTime * 60
+  const desiredTimeConvertedToSeconds = tasks.current
+    ? tasks.current.desiredTime * 60
     : 0;
 
   const segmentedTime = (() => {
@@ -49,7 +49,7 @@ export function useCountdown() {
   );
 
   const changeTime = useCallback(() => {
-    if (!currentTask) {
+    if (!tasks.current) {
       setRemainingTime(0);
 
       return;
@@ -57,7 +57,7 @@ export function useCountdown() {
 
     const currentDate = new Date();
     const distanceBetweenDates =
-      currentDate.getTime() - currentTask.createdAt.getTime();
+      currentDate.getTime() - tasks.current.createdAt.getTime();
 
     const distanceConvertedToSeconds = Math.floor(distanceBetweenDates / 1000);
 
@@ -68,12 +68,12 @@ export function useCountdown() {
 
     if (secondsRemaining > 0) return;
 
-    finishTask();
-  }, [currentTask, desiredTimeConvertedToSeconds, finishTask]);
+    dispatch({ type: 'finished' });
+  }, [tasks, desiredTimeConvertedToSeconds, dispatch]);
 
   useEffect(() => {
     changeTime();
-  }, [currentTask, changeTime]);
+  }, [tasks, changeTime]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

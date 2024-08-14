@@ -18,5 +18,15 @@ type TaskType = z.infer<typeof TaskSchema>;
 const CreateTaskSchema = TaskSchema.pick({ name: true, desiredTime: true });
 type CreateTaskType = z.infer<typeof CreateTaskSchema>;
 
+interface TasksState {
+  current: TaskType | null;
+  created: TaskType[] | [];
+}
+
+interface TasksAction {
+  type: 'create' | 'interrupt' | 'finished';
+  payload?: CreateTaskType;
+}
+
 export { CreateTaskSchema, TaskSchema };
-export type { TaskType, CreateTaskType };
+export type { TaskType, CreateTaskType, TasksState, TasksAction };

@@ -28,7 +28,7 @@ export function History() {
             </S.TRowOfHead>
           </S.THead>
           <S.TBody>
-            {tasks.map((task) => (
+            {tasks.created.map((task) => (
               <S.TRowOfBody key={String(task.createdAt)}>
                 <S.TDataOfBody>{task.name}</S.TDataOfBody>
                 <S.TDataOfBody>{task.desiredTime} minutos</S.TDataOfBody>

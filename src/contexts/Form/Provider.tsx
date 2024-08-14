@@ -19,7 +19,7 @@ export function FormProvider({ children }: FormProviderProps) {
       },
     });
 
-  const { createTask } = useTasksContext();
+  const { dispatch } = useTasksContext();
 
   const taskNameRegister = register('name');
   const desiredTimeRegister = register('desiredTime', {
@@ -86,7 +86,7 @@ export function FormProvider({ children }: FormProviderProps) {
   function onSubmit(data: CreateTaskType) {
     if (schemaValidation.error) return;
 
-    createTask(data);
+    dispatch({ type: 'create', payload: data });
 
     reset();
   }

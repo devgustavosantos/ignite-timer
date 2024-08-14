@@ -1,17 +1,14 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode } from 'react';
 
-import { TaskType, CreateTaskType } from '@/types/task';
+import { TasksState, TasksAction } from '@/types/task';
 
 interface TasksProviderProps {
   children: ReactNode;
 }
 
 interface TasksContextType {
-  currentTask: TaskType | null;
-  tasks: TaskType[];
-  createTask: (data: CreateTaskType) => void;
-  interruptTask: () => void;
-  finishTask: () => void;
+  tasks: TasksState;
+  dispatch: Dispatch<TasksAction>;
 }
 
 export type { TasksProviderProps, TasksContextType };

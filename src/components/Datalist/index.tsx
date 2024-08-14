@@ -5,7 +5,7 @@ export function Datalist() {
 
   return (
     <datalist id="suggestions">
-      {tasks.map((task) => (
+      {tasks.created.map((task) => (
         <option
           value={task.name}
           key={String(task.createdAt)}
