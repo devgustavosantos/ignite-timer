@@ -35,6 +35,7 @@ export function Home() {
             placeholder="Dê um nome para o seu projeto"
             list="suggestions"
             {...taskNameRegister}
+            disabled={!!tasks.current}
           />
           durante
           <S.MinutesContainer>
@@ -42,6 +43,7 @@ export function Home() {
               type="button"
               title="Diminuir o tempo desejado"
               onClick={() => handleDesiredTimeOnClick(false)}
+              disabled={!!tasks.current}
             >
               <Minus />
             </S.MinutesButtons>
@@ -51,11 +53,13 @@ export function Home() {
               max={TASK.desiredTime.max}
               min={TASK.desiredTime.min}
               {...desiredTimeRegister}
+              disabled={!!tasks.current}
             />
             <S.MinutesButtons
               type="button"
               title="Aumentar o tempo desejado"
               onClick={() => handleDesiredTimeOnClick(true)}
+              disabled={!!tasks.current}
             >
               <Plus />
             </S.MinutesButtons>

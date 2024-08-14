@@ -41,7 +41,8 @@ export const Global = createGlobalStyle`
   }
 
   button,
-  a {
+  a,
+  input {
     &:disabled,
     &:hover {
       filter: brightness(0.8);
