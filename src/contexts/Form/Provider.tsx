@@ -1,10 +1,12 @@
 // eslint-disable-next-line import-helpers/order-imports
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { useTasksContext } from '@/contexts/Tasks';
 import { CreateTaskSchema, CreateTaskType } from '@/types/task';
 import { TASK } from '@/utils/task';
+import { toastMessages } from '@/utils/toastMessages';
 
 import { FormContext } from './';
 import { FormProviderProps } from './types';
@@ -87,6 +89,8 @@ export function FormProvider({ children }: FormProviderProps) {
     if (schemaValidation.error) return;
 
     dispatch({ type: 'create', payload: data });
+
+    toast(toastMessages.create);
 
     reset();
   }

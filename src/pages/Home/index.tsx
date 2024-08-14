@@ -1,11 +1,15 @@
 // eslint-disable-next-line import-helpers/order-imports
+import { Minus, Plus } from '@phosphor-icons/react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Countdown } from '@/components/Countdown';
 import { Datalist } from '@/components/Datalist';
 import { StartStopButton } from '@/components/StartStopButton';
 import { useFormContext } from '@/contexts/Form';
 import { useTasksContext } from '@/contexts/Tasks';
 import { TASK } from '@/utils/task';
-import { Minus, Plus } from '@phosphor-icons/react';
+import { toastMessages } from '@/utils/toastMessages';
 
 import * as S from './styles';
 
@@ -66,7 +70,20 @@ export function Home() {
         <StartStopButton
           disabled={!isAvailableStartCountdown}
           isStartButton={!tasks.current}
-          onClick={() => dispatch({ type: 'interrupt' })}
+          onClick={() => {
+            dispatch({ type: 'interrupt' });
+            toast(toastMessages.interrupt);
+          }}
+        />
+
+        <ToastContainer
+          position={'bottom-right'}
+          autoClose={5000}
+          hideProgressBar={true}
+          closeOnClick={true}
+          pauseOnHover={true}
+          draggable={true}
+          theme={'dark'}
         />
       </S.Form>
     </S.Container>

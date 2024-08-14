@@ -72,6 +72,10 @@ export const Global = createGlobalStyle`
     background-color: ${({ theme }) => theme.BLACK_900};
   }
 
+  .Toastify__toast-theme--dark {
+    background-color: ${({ theme }) => theme.BLACK_600};
+  }
+  
   @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
     html {
       font-size: 5.46875%; //14px

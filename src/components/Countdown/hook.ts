@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { useTasksContext } from '@/contexts/Tasks';
+import { toastMessages } from '@/utils/toastMessages';
 
 import { SegmentsTime } from './types';
 
@@ -67,6 +69,8 @@ export function useCountdown() {
     setRemainingTime(secondsRemaining);
 
     if (secondsRemaining > 0) return;
+
+    toast(toastMessages.finished);
 
     dispatch({ type: 'finished' });
   }, [tasks, desiredTimeConvertedToSeconds, dispatch]);
