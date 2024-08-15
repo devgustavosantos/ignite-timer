@@ -3,11 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 import { BREAKPOINTS } from './breakpoints';
 
 export const Global = createGlobalStyle`
-  html {
+  html#ignite-timer {
     font-size: 6.25%;//16px
   }
 
-  body,
+  body#ignite-timer-body,
   input,
   button,
   textarea {
